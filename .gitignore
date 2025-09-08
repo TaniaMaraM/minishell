@@ -53,3 +53,40 @@ dkms.conf
 
 # debug information files
 *.dwo
+
+# VS Code files
+.vscode/
+*.code-workspace
+
+# Swap files
+*.swp
+*.swo.DS_Store
+.DS_Store 
+
+# Docker related
+*.pid
+*.seed
+*.log
+*.tmp
+*.swp
+*.sock
+*.db
+
+# Build artifacts
+*.o
+*.a
+*.so
+*.dSYM/
+vgcore.*
+
+# Executáveis
+minishell
+
+# Docker local configs
+.docker/
+docker-compose.override.yml
+
+# Editor
+.vscode/
+
+.DS_Store
