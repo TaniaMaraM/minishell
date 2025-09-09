@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 09:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/08 21:00:32 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/09 18:28:00 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,54 +46,6 @@ void	execute_child_command(t_cmd *cmd, t_shell *shell)
 	exit(1);
 }
 
-int	execute_single_command(t_cmd *cmd, t_shell *shell);
-
-static int	setup_pipeline_process(t_cmd *current, int pipe_fds[2],
-	int prev_read_fd, t_shell *shell)
-{
-	pid_t	pid;
-
-	if (current->next && pipe(pipe_fds) == -1)
-		return (1);
-	pid = fork();
-	if (pid == 0)
-		execute_pipeline_child(current, pipe_fds, prev_read_fd, shell);
-	else if (pid < 0)
-		return (1);
-	return (0);
-}
-
-static int	get_child_exit_status(int status)
-{
-	if (WIFSIGNALED(status))
-	{
-		if (WTERMSIG(status) == SIGQUIT)
-			ft_putstr_fd("Quit: 3\n", STDERR_FILENO);
-		return (128 + WTERMSIG(status));
-	}
-	return (WEXITSTATUS(status));
-}
-
-int	execute_pipeline(t_cmd *cmd_list, t_shell *shell)
-{
-	t_cmd	*current;
-	int		pipe_fds[2];
-	int		prev_read_fd;
-	int		status;
-	int		last_status;
-
-	if (!cmd_list || !shell)
-		return (1);
-	current = cmd_list;
-	prev_read_fd = -1;
-	while (current)
-	{
-		if (setup_pipeline_process(current, pipe_fds, prev_read_fd, shell))
-			return (1);
-		execute_pipeline_parent(&current, pipe_fds, &prev_read_fd);
-	}
-	last_status = 0;
-	while (wait(&status) > 0)
-		last_status = get_child_exit_status(status);
-	return (last_status);
-}
+// /* Function declarations - implementations moved to other files */
+// int	execute_single_command(t_cmd *cmd, t_shell *shell);
+// int	execute_pipeline(t_cmd *cmd_list, t_shell *shell);

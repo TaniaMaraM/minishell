@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 15:45:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/08 11:30:00 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/09 15:04:54 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static char	*read_non_interactive(void)
  */
 char	*read_command_line(void)
 {
-	char	*line;
+	char		*line;
 
 	if (isatty(STDIN_FILENO))
 	{
@@ -112,10 +112,10 @@ void	process_line(char *input, t_shell *sh)
 		print_error("parser", "Syntax error");
 		sh->last_status = 2;
 	}
-        else
-        {
-                sh->last_status = execute_command_list(cmd_list, sh);
-        }
+	else
+	{
+		sh->last_status = execute_command_list(cmd_list, sh);
+	}
 	parser_destroy(parser);
 	lexer_destroy(lexer);
 	free(processed_input);

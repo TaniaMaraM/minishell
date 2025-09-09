@@ -32,7 +32,8 @@ typedef struct s_redir
 {
 	t_redir_type	type;
 	char			*file;
-	int				fd;
+	int				fd;		/* for HEREDOC: read end of the pipe */
+	int				expand;	/* 1 if delimiter is unquoted, else 0 */
 	struct s_redir	*next;
 }	t_redir;
 
