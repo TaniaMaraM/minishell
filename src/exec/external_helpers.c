@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 17:45:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/08 11:21:49 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/09 11:37:20 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ char	*check_absolute_path(const char *command)
 {
 	if (ft_strchr(command, '/'))
 	{
+		if (access(command, F_OK) == -1)
+			return (NULL);
 		if (access(command, X_OK) == 0)
 			return (ft_strdup(command));
 		return (NULL);
