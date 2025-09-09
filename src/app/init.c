@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 10:15:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/08 19:42:46 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/09 18:26:12 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,17 @@ int	shell_init(t_shell *shell, char **envp)
 	shell->prompt = "minishell$ ";
 	shell->should_exit = 0;
 	shell->exit_code = 0;
+	shell->stdin_backup = dup(STDIN_FILENO);
+	if (shell->stdin_backup == -1)
+	{
+		perror("dup stdin_backup");
+		return (1);
+	}
 	shell->envp = duplicate_env(envp);
 	if (!shell->envp)
 	{
 		print_error("initialization", "Failed to copy environment");
+		close(shell->stdin_backup);
 		return (1);
 	}
 	if (shell->is_interactive)

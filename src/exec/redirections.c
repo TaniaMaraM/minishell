@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 16:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/08 21:01:36 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/09 18:26:12 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,32 @@ static int	process_redirection(t_redir *redir)
 	return (0);
 }
 
+int	process_heredocs(t_redir *redirs)
+{
+	t_redir	*current;
+	t_shell	*shell;
+
+	if (!redirs)
+		return (0);
+	shell = NULL;
+	current = redirs;
+	while (current)
+	{
+		if (current->type == REDIR_HEREDOC)
+		{
+			current->expand = 1;
+			if (build_heredoc_fd(current, shell) == -1)
+			{
+				if (g_signal == SIGINT)
+					return (130);
+				return (1);
+			}
+		}
+		current = current->next;
+	}
+	return (0);
+}
+
 int	setup_redirections(t_redir *redirs)
 {
 	t_redir	*current;
@@ -34,8 +60,20 @@ int	setup_redirections(t_redir *redirs)
 	current = redirs;
 	while (current)
 	{
-		if (process_redirection(current))
-			return (1);
+		if (current->type == REDIR_HEREDOC)
+		{
+			if (current->fd < 0)
+				return (perror("heredoc fd invalid"), 1);
+			if (dup2(current->fd, STDIN_FILENO) == -1)
+				return (perror("dup2 heredoc"), 1);
+			close(current->fd);
+			current->fd = -1;
+		}
+		else
+		{
+			if (process_redirection(current))
+				return (1);
+		}
 		current = current->next;
 	}
 	return (0);

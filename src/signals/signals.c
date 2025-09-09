@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 17:20:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/08 21:27:56 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/09 15:50:11 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,17 @@ void	signal_handler(int sig)
 		write(STDOUT_FILENO, "\n", 1);
 		rl_on_new_line();
 		rl_replace_line("", 0);
-		rl_redisplay();
+		if (rl_readline_state & RL_STATE_READCMD)
+			rl_redisplay();
+	}
+}
+
+void	signal_handler_heredoc(int sig)
+{
+	if (sig == SIGINT)
+	{
+		g_signal = sig;
+		write(STDOUT_FILENO, "\n", 1);
+		close(STDIN_FILENO);
 	}
 }

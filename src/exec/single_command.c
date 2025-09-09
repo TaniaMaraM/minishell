@@ -6,13 +6,13 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 20:10:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/08 20:41:00 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/09 18:36:10 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	execute_parent_builtin(t_cmd *cmd, t_shell *shell)
+int	execute_parent_builtin(t_cmd *cmd, t_shell *shell)
 {
 	if (ft_strcmp(cmd->argv[0], "exit") == 0)
 		return (builtin_exit(cmd->argv, shell));
@@ -25,51 +25,40 @@ static int	execute_parent_builtin(t_cmd *cmd, t_shell *shell)
 	return (0);
 }
 
-static int	check_parent_builtin(char *cmd_name)
+static void	restore_std_fds(int stdin_fd, int stdout_fd, int stderr_fd)
+{
+	dup2(stdin_fd, STDIN_FILENO);
+	dup2(stdout_fd, STDOUT_FILENO);
+	dup2(stderr_fd, STDERR_FILENO);
+	close(stdin_fd);
+	close(stdout_fd);
+	close(stderr_fd);
+}
+
+int	execute_builtin_with_redirections(t_cmd *cmd, t_shell *shell)
+{
+	int	stdin_backup;
+	int	stdout_backup;
+	int	stderr_backup;
+	int	result;
+
+	stdin_backup = dup(STDIN_FILENO);
+	stdout_backup = dup(STDOUT_FILENO);
+	stderr_backup = dup(STDERR_FILENO);
+	if (setup_redirections(cmd->redirs))
+	{
+		restore_std_fds(stdin_backup, stdout_backup, stderr_backup);
+		return (1);
+	}
+	result = execute_parent_builtin(cmd, shell);
+	restore_std_fds(stdin_backup, stdout_backup, stderr_backup);
+	return (result);
+}
+
+int	check_parent_builtin(char *cmd_name)
 {
 	return (ft_strcmp(cmd_name, "exit") == 0
 		|| ft_strcmp(cmd_name, "cd") == 0
 		|| ft_strcmp(cmd_name, "export") == 0
 		|| ft_strcmp(cmd_name, "unset") == 0);
-}
-
-static int	handle_child_process(t_cmd *cmd, t_shell *shell)
-{
-	execute_child_command(cmd, shell);
-	return (1);
-}
-
-static int	get_child_exit_status(int status)
-{
-	if (WIFSIGNALED(status))
-	{
-		if (WTERMSIG(status) == SIGQUIT)
-			ft_putstr_fd("Quit: 3\n", STDERR_FILENO);
-		return (128 + WTERMSIG(status));
-	}
-	return (WEXITSTATUS(status));
-}
-
-int	execute_single_command(t_cmd *cmd, t_shell *shell)
-{
-	pid_t	pid;
-	int		status;
-
-	if (!cmd || !shell || !cmd->argv || !cmd->argv[0])
-		return (1);
-	if (check_parent_builtin(cmd->argv[0]))
-		return (execute_parent_builtin(cmd, shell));
-	pid = fork();
-	if (pid == 0)
-		return (handle_child_process(cmd, shell));
-	else if (pid > 0)
-	{
-		waitpid(pid, &status, 0);
-		return (get_child_exit_status(status));
-	}
-	else
-	{
-		print_error("fork", strerror(errno));
-		return (1);
-	}
 }

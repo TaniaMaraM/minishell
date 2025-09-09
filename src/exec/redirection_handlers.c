@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 11:15:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/08 11:21:54 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/09 12:23:00 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,33 +60,5 @@ int	handle_append_redirection(const char *file)
 	}
 	dup2(fd, STDOUT_FILENO);
 	close(fd);
-	return (0);
-}
-
-int	handle_heredoc_redirection(const char *delimiter)
-{
-	int		pipe_fds[2];
-	char	*line;
-
-	if (!delimiter)
-		return (1);
-	if (pipe(pipe_fds) == -1)
-		return (1);
-	while (1)
-	{
-		line = readline("> ");
-		if (!line)
-			break ;
-		if (ft_strcmp(line, (char *)delimiter) == 0)
-		{
-			free(line);
-			break ;
-		}
-		ft_putendl_fd(line, pipe_fds[1]);
-		free(line);
-	}
-	close(pipe_fds[1]);
-	dup2(pipe_fds[0], STDIN_FILENO);
-	close(pipe_fds[0]);
 	return (0);
 }

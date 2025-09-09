@@ -50,6 +50,7 @@ typedef struct s_shell
 	char		*prompt;		/* Current prompt string */
 	int			should_exit;	/* Flag to indicate shell should exit */
 	int			exit_code;		/* Exit code for shell termination */
+	int			stdin_backup;	/* Backup of the original terminal STDIN */
 }	t_shell;
 
 /* Function prototypes */

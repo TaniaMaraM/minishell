@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 14:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/08 11:30:00 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/09 18:26:12 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,24 @@ static int	handle_signal_interrupt(t_shell *sh, char *line)
  * @param sh Shell context
  * @return Final exit status of the shell
  */
+static void	restore_stdin_for_readline(t_shell *sh)
+{
+	if (dup2(sh->stdin_backup, STDIN_FILENO) == -1)
+		perror("dup2 to original stdin");
+}
+
+static int	handle_empty_or_signal(t_shell *sh, char *line)
+{
+	if (handle_signal_interrupt(sh, line))
+		return (1);
+	if (*line == '\0')
+	{
+		free(line);
+		return (1);
+	}
+	return (0);
+}
+
 int	shell_loop(t_shell *sh)
 {
 	char	*line;
@@ -37,6 +55,7 @@ int	shell_loop(t_shell *sh)
 	while (!sh->should_exit)
 	{
 		g_signal = 0;
+		restore_stdin_for_readline(sh);
 		line = read_command_line();
 		if (!line)
 		{
@@ -45,13 +64,8 @@ int	shell_loop(t_shell *sh)
 			sh->should_exit = 1;
 			break ;
 		}
-		if (handle_signal_interrupt(sh, line))
+		if (handle_empty_or_signal(sh, line))
 			continue ;
-		if (*line == '\0')
-		{
-			free(line);
-			continue ;
-		}
 		add_history(line);
 		process_line(line, sh);
 		free(line);
