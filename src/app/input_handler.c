@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 15:45:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/09 15:04:54 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/09 19:22:34 by rwrobles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static char	*read_non_interactive(void)
  */
 char	*read_command_line(void)
 {
-	char		*line;
+	char	*line;
 
 	if (isatty(STDIN_FILENO))
 	{
@@ -53,7 +53,7 @@ char	*read_command_line(void)
 }
 
 static int	validate_and_process_quotes(char *input, char **processed,
-	t_shell *sh)
+		t_shell *sh)
 {
 	if (has_unclosed_quotes(input))
 	{
@@ -72,7 +72,7 @@ static int	validate_and_process_quotes(char *input, char **processed,
 }
 
 static int	init_lexer_parser(char *processed, t_lexer **lexer,
-	t_parser **parser, t_shell *sh)
+		t_parser **parser, t_shell *sh)
 {
 	*lexer = lexer_init(processed);
 	if (!*lexer)

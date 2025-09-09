@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 21:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/08 21:14:24 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/09 19:36:23 by rwrobles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ int	handle_quoted_char(t_expander *expander, char c)
 	}
 	else
 	{
-		expander->quote_state
-            = update_quote_state(expander->quote_state, c);
+		expander->quote_state = update_quote_state(expander->quote_state, c);
 		expander->input_pos++;
 	}
 	return (0);

@@ -47,7 +47,8 @@ static t_token	*handle_quoted_word(t_lexer *lexer, char c)
 		quote_state = QUOTE_SINGLE;
 	else
 		quote_state = QUOTE_DOUBLE;
-	token = create_quoted_token(TOKEN_WORD, value, ft_strlen(value), quote_state);
+	token = create_quoted_token(TOKEN_WORD, value, ft_strlen(value),
+			quote_state);
 	free(value);
 	return (token);
 }

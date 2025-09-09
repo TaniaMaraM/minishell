@@ -12,10 +12,10 @@
 
 #include "minishell.h"
 
-char    *expand_string(const char *input, t_shell *shell, t_quote_state state)
+char	*expand_string(const char *input, t_shell *shell, t_quote_state state)
 {
-	t_expander      *expander;
-	char            *result;
+	t_expander	*expander;
+	char		*result;
 
 	if (!input || !shell)
 		return (NULL);
@@ -32,9 +32,9 @@ char    *expand_string(const char *input, t_shell *shell, t_quote_state state)
 	return (result);
 }
 
-int     expand_token(t_token *token, t_shell *shell)
+int	expand_token(t_token *token, t_shell *shell)
 {
-	char    *expanded;
+	char	*expanded;
 
 	if (!token || !shell)
 		return (1);
@@ -42,8 +42,7 @@ int     expand_token(t_token *token, t_shell *shell)
 	{
 		if (token->quote_state == QUOTE_SINGLE)
 			return (0);
-		expanded = expand_string(token->value, shell,
-					token->quote_state);
+		expanded = expand_string(token->value, shell, token->quote_state);
 		if (!expanded)
 			return (1);
 		free(token->value);
@@ -52,10 +51,10 @@ int     expand_token(t_token *token, t_shell *shell)
 	return (0);
 }
 
-int     expand_command(t_cmd *cmd, t_shell *shell)
+int	expand_command(t_cmd *cmd, t_shell *shell)
 {
-	int             i;
-	char            *expanded;
+	int		i;
+	char	*expanded;
 
 	if (!cmd || !shell)
 		return (1);
@@ -72,9 +71,9 @@ int     expand_command(t_cmd *cmd, t_shell *shell)
 	return (0);
 }
 
-int     expand_command_list(t_cmd *cmd_list, t_shell *shell)
+int	expand_command_list(t_cmd *cmd_list, t_shell *shell)
 {
-	t_cmd   *current;
+	t_cmd	*current;
 
 	if (!cmd_list || !shell)
 		return (1);

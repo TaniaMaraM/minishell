@@ -44,4 +44,3 @@ int	expander_expand(t_expander *expander)
 	expander->result[expander->result_pos] = '\0';
 	return (0);
 }
-

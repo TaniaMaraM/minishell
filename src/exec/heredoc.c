@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 12:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/09 17:46:38 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/09 19:35:38 by rwrobles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 static int	process_heredoc_input(const char *delimiter, int *pipe_fds,
-	int stdin_backup)
+		int stdin_backup)
 {
 	char	*line;
 
@@ -40,9 +40,9 @@ static int	process_heredoc_input(const char *delimiter, int *pipe_fds,
 
 int	handle_heredoc_redirection(const char *delimiter)
 {
-	int		pipe_fds[2];
-	int		stdin_backup;
-	int		result;
+	int	pipe_fds[2];
+	int	stdin_backup;
+	int	result;
 
 	if (!delimiter || setup_heredoc_pipe(pipe_fds, &stdin_backup))
 		return (1);

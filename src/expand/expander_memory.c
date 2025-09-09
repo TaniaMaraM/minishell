@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-static int      expander_alloc_result(t_expander *expander, const char *input)
+static int	expander_alloc_result(t_expander *expander, const char *input)
 {
 	expander->result_capacity = ft_strlen(input) * 2;
 	expander->result = malloc(expander->result_capacity + 1);
@@ -26,10 +26,10 @@ static int      expander_alloc_result(t_expander *expander, const char *input)
 	return (0);
 }
 
-t_expander      *expander_alloc(const char *input, t_shell *shell,
-			t_quote_state state)
+t_expander	*expander_alloc(const char *input, t_shell *shell,
+		t_quote_state state)
 {
-	t_expander      *expander;
+	t_expander	*expander;
 
 	if (!input || !shell)
 		return (NULL);
@@ -52,15 +52,15 @@ t_expander      *expander_alloc(const char *input, t_shell *shell,
 	return (expander);
 }
 
-void    expander_set_error(t_expander *expander)
+void	expander_set_error(t_expander *expander)
 {
 	if (expander)
 		expander->error = 1;
 }
 
-char    *var_name_alloc(const char *input, size_t start, size_t len)
+char	*var_name_alloc(const char *input, size_t start, size_t len)
 {
-	char    *var_name;
+	char	*var_name;
 
 	if (!input || len == 0)
 		return (NULL);

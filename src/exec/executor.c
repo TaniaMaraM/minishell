@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 09:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/09 18:28:00 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/09 19:34:10 by rwrobles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,3 @@ void	execute_child_command(t_cmd *cmd, t_shell *shell)
 		exit(execute_external_in_child(cmd, shell));
 	exit(1);
 }
-
-// /* Function declarations - implementations moved to other files */
-// int	execute_single_command(t_cmd *cmd, t_shell *shell);
-// int	execute_pipeline(t_cmd *cmd_list, t_shell *shell);

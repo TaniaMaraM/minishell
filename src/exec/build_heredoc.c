@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_heredoc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 18:30:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/09 18:29:19 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/09 19:33:25 by rwrobles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ static int	handle_heredoc_input(t_redir *r, int *fds, t_shell *shell)
 
 int	build_heredoc_fd(t_redir *r, t_shell *shell)
 {
-	int		fds[2];
-	int		result;
+	int	fds[2];
+	int	result;
 
 	if (pipe(fds) == -1)
 		return (perror("pipe"), -1);
