@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 09:00:00 by rwrobles          #+#    #+#             */
-/*   Updated: 2025/09/08 11:32:46 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/10 16:31:56 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ t_redir	*redir_create(t_redir_type type, const char *file)
 		return (NULL);
 	redir->type = type;
 	redir->file = ft_strdup(file);
+	if (!redir->file)
+	{
+		free(redir);
+		return (NULL);
+	}
 	redir->fd = -1;
 	redir->next = NULL;
 	return (redir);

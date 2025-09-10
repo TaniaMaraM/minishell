@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 15:45:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/09 19:22:34 by rwrobles         ###   ########.fr       */
+/*   Updated: 2025/09/10 14:06:23 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ static int	validate_and_process_quotes(char *input, char **processed,
 	if (has_unclosed_quotes(input))
 	{
 		print_error("syntax", "unclosed quotes");
-		sh->last_status = 2;
+		sh->last_status = EXIT_STATUS_SYNTAX_ERROR;
 		return (1);
 	}
 	*processed = process_quotes(input, sh);
 	if (!*processed)
 	{
 		print_error("quotes", "Failed to process quotes");
-		sh->last_status = 1;
+		sh->last_status = EXIT_FAILURE;
 		return (1);
 	}
 	return (0);
@@ -110,7 +110,7 @@ void	process_line(char *input, t_shell *sh)
 	if (parser->error || !cmd_list)
 	{
 		print_error("parser", "Syntax error");
-		sh->last_status = 2;
+		sh->last_status = EXIT_STATUS_SYNTAX_ERROR;
 	}
 	else
 	{

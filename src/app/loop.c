@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 14:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/09 19:22:54 by rwrobles         ###   ########.fr       */
+/*   Updated: 2025/09/10 14:59:28 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	handle_signal_interrupt(t_shell *sh, char *line)
 {
 	if (g_signal == SIGINT)
 	{
-		sh->last_status = 130;
+		sh->last_status = EXIT_STATUS_SIGINT;
 		g_signal = 0;
 		if (line)
 			free(line);
@@ -36,11 +36,27 @@ static void	restore_stdin_for_readline(t_shell *sh)
 		perror("dup2 to original stdin");
 }
 
+static int	is_empty_or_whitespace(const char *line)
+{
+	int	i;
+
+	if (!line || *line == '\0')
+		return (1);
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 static int	handle_empty_or_signal(t_shell *sh, char *line)
 {
 	if (handle_signal_interrupt(sh, line))
 		return (1);
-	if (*line == '\0')
+	if (is_empty_or_whitespace(line))
 	{
 		free(line);
 		return (1);

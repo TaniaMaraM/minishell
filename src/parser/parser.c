@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 09:00:00 by rwrobles          #+#    #+#             */
-/*   Updated: 2025/09/08 11:32:38 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/10 16:31:08 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ t_parser	*parser_init(t_lexer *lexer, t_shell *shell)
 
 	parser = malloc(sizeof(t_parser));
 	if (!parser)
+	{
+		lexer_destroy(lexer);
 		return (NULL);
+	}
 	parser->lexer = lexer;
 	parser->current_token = NULL;
 	parser->cmd_list = NULL;

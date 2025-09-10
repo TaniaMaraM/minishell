@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 20:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/09 20:00:00 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/10 14:25:55 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int	process_pipeline_heredocs(t_cmd *cmd_list)
 	while (current)
 	{
 		if (process_heredocs(current->redirs))
-			return (130);
+			return (EXIT_STATUS_SIGINT);
 		if (g_signal == SIGINT)
-			return (130);
+			return (EXIT_STATUS_SIGINT);
 		current = current->next;
 	}
 	return (0);

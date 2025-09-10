@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 10:15:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/09 18:26:12 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/10 14:06:23 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	shell_init(t_shell *shell, char **envp)
 {
 	if (!shell || !envp)
 		return (1);
-	shell->last_status = 0;
+	shell->last_status = EXIT_SUCCESS;
 	shell->is_interactive = isatty(STDIN_FILENO);
 	shell->prompt = "minishell$ ";
 	shell->should_exit = 0;

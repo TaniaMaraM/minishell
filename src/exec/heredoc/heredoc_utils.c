@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 13:40:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/09 19:34:56 by rwrobles         ###   ########.fr       */
+/*   Updated: 2025/09/10 16:12:07 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,29 +24,6 @@ int	process_heredoc_line(char *line, const char *delimiter, int write_fd)
 	ft_putendl_fd(line, write_fd);
 	free(line);
 	return (1);
-}
-
-int	handle_heredoc_signal(int *pipe_fds)
-{
-	if (g_signal == SIGINT)
-	{
-		close(pipe_fds[0]);
-		close(pipe_fds[1]);
-		return (1);
-	}
-	return (0);
-}
-
-void	setup_heredoc_signals(void)
-{
-	struct sigaction	sa;
-
-	sa.sa_handler = signal_handler_heredoc;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = 0;
-	sigaction(SIGINT, &sa, NULL);
-	sa.sa_handler = SIG_IGN;
-	sigaction(SIGQUIT, &sa, NULL);
 }
 
 int	setup_heredoc_pipe(int *pipe_fds, int *stdin_backup)
