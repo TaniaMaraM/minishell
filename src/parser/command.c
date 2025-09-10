@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 09:00:00 by rwrobles          #+#    #+#             */
-/*   Updated: 2025/09/08 11:31:21 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/10 12:37:02 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,19 @@ void	cmd_destroy_list(t_cmd *cmd_list)
 		current = next;
 	}
 }
+static int	set_argv_with_cleanup(t_cmd *cmd, char **new_argv, const char *arg, int argc)
+{
+	new_argv[argc] = ft_strdup(arg);
+	if (!new_argv[argc])
+	{
+		free(new_argv);
+		return (0);
+	}
+	new_argv[argc + 1] = NULL;
+	free(cmd->argv);
+	cmd->argv = new_argv;
+	return (1);
+}
 
 int	cmd_add_arg(t_cmd *cmd, const char *arg)
 {
@@ -72,9 +85,6 @@ int	cmd_add_arg(t_cmd *cmd, const char *arg)
 		new_argv[i] = cmd->argv[i];
 		i++;
 	}
-	new_argv[argc] = ft_strdup(arg);
-	new_argv[argc + 1] = NULL;
-	free(cmd->argv);
-	cmd->argv = new_argv;
-	return (1);
+	return (set_argv_with_cleanup(cmd, new_argv, arg, argc));
 }
+
