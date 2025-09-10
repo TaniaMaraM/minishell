@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 09:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/08 11:30:00 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/10 15:04:10 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ int	main(int argc, char **argv, char **envp)
 	}
 	exit_status = shell_loop(&sh);
 	shell_cleanup(&sh);
+	if (sh.should_exit && sh.exit_code != 0)
+		return (sh.exit_code);
 	return (exit_status);
 }

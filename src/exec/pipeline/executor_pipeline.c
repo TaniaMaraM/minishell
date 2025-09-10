@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 19:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/09 19:00:00 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/10 15:23:48 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	get_child_exit_status(int status)
 	{
 		if (WTERMSIG(status) == SIGQUIT)
 			ft_putstr_fd("Quit: 3\n", STDERR_FILENO);
-		return (128 + WTERMSIG(status));
+		return (EXIT_STATUS_SIGNAL_BASE + WTERMSIG(status));
 	}
 	return (WEXITSTATUS(status));
 }
@@ -60,9 +60,13 @@ int	execute_pipeline(t_cmd *cmd_list, t_shell *shell)
 	}
 	if (setup_pipeline_execution(cmd_list, shell, &prev_read_fd, pipe_fds))
 		return (1);
-	last_status = 0;
+	last_status = EXIT_SUCCESS;
 	while (wait(&status) > 0)
-		last_status = get_child_exit_status(status);
+	{
+		int current_status = get_child_exit_status(status);
+		if (current_status != 0)
+			last_status = current_status;
+	}
 	cleanup_pipeline_heredoc_fds(cmd_list);
 	return (last_status);
 }

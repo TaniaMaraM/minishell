@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 12:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/09 19:35:38 by rwrobles         ###   ########.fr       */
+/*   Updated: 2025/09/10 14:25:55 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	process_heredoc_input(const char *delimiter, int *pipe_fds,
 				dup2(stdin_backup, STDIN_FILENO);
 				close(stdin_backup);
 				signal_setup_interactive();
-				return (130);
+				return (EXIT_STATUS_SIGINT);
 			}
 			break ;
 		}

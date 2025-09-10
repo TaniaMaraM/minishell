@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 08:00:00 by rwrobles          #+#    #+#             */
-/*   Updated: 2025/09/09 19:23:41 by rwrobles         ###   ########.fr       */
+/*   Updated: 2025/09/10 14:25:55 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,15 @@
 # include "expand.h"
 # include "signals.h"
 # include "tokens.h"
+
+/* Exit status constants */
+# define EXIT_SUCCESS 0
+# define EXIT_FAILURE 1
+# define EXIT_STATUS_SYNTAX_ERROR 2
+# define EXIT_STATUS_SIGINT 130
+# define EXIT_STATUS_SIGNAL_BASE 128
+# define CMD_NOT_FOUND 127
+# define CMD_PERMISSION_DENIED 126
 
 /* Shell state structure */
 typedef struct s_shell

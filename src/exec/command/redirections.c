@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 16:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/09 18:26:12 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/10 15:04:10 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,15 @@ static int	process_redirection(t_redir *redir)
 	else if (redir->type == REDIR_APPEND)
 		return (handle_append_redirection(redir->file));
 	else if (redir->type == REDIR_HEREDOC)
-		return (handle_heredoc_redirection(redir->file));
+	{
+		if (redir->fd < 0)
+			return (1);
+		if (dup2(redir->fd, STDIN_FILENO) == -1)
+			return (perror("dup2 heredoc"), 1);
+		close(redir->fd);
+		redir->fd = -1;
+		return (0);
+	}
 	return (0);
 }
 
@@ -42,7 +50,7 @@ int	process_heredocs(t_redir *redirs)
 			if (build_heredoc_fd(current, shell) == -1)
 			{
 				if (g_signal == SIGINT)
-					return (130);
+					return (EXIT_STATUS_SIGINT);
 				return (1);
 			}
 		}

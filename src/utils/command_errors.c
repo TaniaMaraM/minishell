@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 11:30:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/03 14:45:00 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/10 14:25:55 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	print_command_error(const char *command, const char *error)
 
 int	handle_execution_error(int error_code, const char *command)
 {
-	if (error_code == 127)
+	if (error_code == CMD_NOT_FOUND)
 		print_command_error(command, "command not found");
-	else if (error_code == 126)
+	else if (error_code == CMD_PERMISSION_DENIED)
 		print_command_error(command, "permission denied");
-	else if (error_code == 1)
+	else if (error_code == EXIT_FAILURE)
 		print_command_error(command, "execution failed");
 	return (error_code);
 }

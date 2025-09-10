@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 19:10:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/09 18:36:43 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/10 14:25:55 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	get_child_exit_status(int status)
 	{
 		if (WTERMSIG(status) == SIGQUIT)
 			ft_putstr_fd("Quit: 3\n", STDERR_FILENO);
-		return (128 + WTERMSIG(status));
+		return (EXIT_STATUS_SIGNAL_BASE + WTERMSIG(status));
 	}
 	return (WEXITSTATUS(status));
 }
@@ -61,11 +61,11 @@ int	execute_single_command(t_cmd *cmd, t_shell *shell)
 	if (!cmd || !shell || !cmd->argv || !cmd->argv[0])
 		return (1);
 	if (process_heredocs(cmd->redirs))
-		return (130);
+		return (EXIT_STATUS_SIGINT);
 	if (g_signal == SIGINT)
 	{
 		cleanup_heredoc_fds(cmd);
-		return (130);
+		return (EXIT_STATUS_SIGINT);
 	}
 	if (check_parent_builtin(cmd->argv[0]))
 	{

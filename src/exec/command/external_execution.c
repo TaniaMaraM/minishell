@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 09:30:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/09 11:36:10 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/10 14:25:55 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ int	execute_external_in_child(t_cmd *cmd, t_shell *shell)
 			print_command_error(cmd->argv[0], "No such file or directory");
 		else
 			print_command_error(cmd->argv[0], "command not found");
-		return (127);
+		return (CMD_NOT_FOUND);
 	}
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
 	execve(command_path, cmd->argv, shell->envp);
 	print_error("execve", strerror(errno));
 	free(command_path);
-	return (126);
+	return (CMD_PERMISSION_DENIED);
 }
