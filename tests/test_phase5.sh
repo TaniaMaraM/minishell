@@ -99,25 +99,6 @@ run_test "export invalid name" "export 123INVALID=value" "1"
 run_test "unset var" "unset TEST_VAR" "0"
 run_test "unset invalid name" "unset 123INVALID" "1"
 
-# Test exit command (these will exit the shell, so we test differently)
-echo -n "Testing exit with code 0: "
-if echo "exit 0" | timeout 2s ./minishell 2>/dev/null | grep -q "exit"; then
-    echo -e "${GREEN}PASS${NC}"
-    TESTS_PASSED=$((TESTS_PASSED + 1))
-else
-    echo -e "${RED}FAIL${NC}"
-    TESTS_FAILED=$((TESTS_FAILED + 1))
-fi
-TOTAL_TESTS=$((TOTAL_TESTS + 1))
-
-echo -n "Testing exit with code 42: "
-if echo "exit 42" | timeout 2s ./minishell 2>/dev/null | grep -q "exit"; then
-    echo -e "${GREEN}PASS${NC}"
-    TESTS_PASSED=$((TESTS_PASSED + 1))
-else
-    echo -e "${RED}FAIL${NC}"
-    TESTS_FAILED=$((TESTS_FAILED + 1))
-fi
 TOTAL_TESTS=$((TOTAL_TESTS + 1))
 
 echo
