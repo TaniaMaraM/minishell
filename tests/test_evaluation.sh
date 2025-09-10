@@ -4,15 +4,15 @@
 # ║                                                                            ║
 # ║                    MINISHELL SUBJECT-COMPLIANT TEST SUITE V3               ║
 # ║                                                                            ║
-# ║  Tests ONLY mandatory requirements from the 42 minishell subject          ║
-# ║  Based on minishell_testing_guide.md and subject requirements             ║
-# ║  EXCLUDES bonus features: &&, ||, wildcards, parentheses                 ║
-# ║  CONSIDERS minor formatting differences as PASSED                         ║
-# ║  SHOWS CLEAR RESULTS: ✅ PASSED, ❌ FAILED, ⏭️ SKIPPED                    ║
+# ║  Tests ONLY mandatory requirements from the 42 minishell subject           ║
+# ║  Based on minishell_testing_guide.md and subject requirements              ║
+# ║  EXCLUDES bonus features: &&, ||, wildcards, parentheses                   ║
+# ║  CONSIDERS minor formatting differences as PASSED                          ║
+# ║  SHOWS CLEAR RESULTS: ✅ PASSED, ❌ FAILED, ⏭️ SKIPPED                      ║
 # ║                                                                            ║
-# ║  📋 TEST COVERAGE SUMMARY FOR EVALUATOR:                                  ║
-# ║  • Exit codes (all values: 0, 1, 42, 255, negative, invalid)             ║
-# ║  • Built-ins (echo -n, cd, pwd, export, unset, env, exit)                ║
+# ║  📋 TEST COVERAGE SUMMARY FOR EVALUATOR:                                   ║
+# ║  • Exit codes (all values: 0, 1, 42, 255, negative, invalid)              ║
+# ║  • Built-ins (echo -n, cd, pwd, export, unset, env, exit)                 ║
 # ║  • Variables ($USER, $HOME, $PATH, $PWD, $?, empty vars)                  ║
 # ║  • Quotes (single: no expansion, double: with expansion)                  ║
 # ║  • Redirections (<, >, >>, heredoc <<)                                    ║
