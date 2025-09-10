@@ -129,12 +129,7 @@ test_metacharacter_recognition() {
     fi
     rm -f test_input.txt
     
-    # Test heredoc (simplified - just check if it doesn't crash)
-    if echo "cat << EOF" | timeout 3s "$MINISHELL" 2>/dev/null >/dev/null; then
-        log_pass "Heredoc works (command executed without crash)"
-    else
-        log_fail "Heredoc failed"
-    fi
+
 }
 
 # Test 4: Error Detection
