@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_heredoc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 18:30:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/09 19:33:25 by rwrobles         ###   ########.fr       */
+/*   Updated: 2025/09/10 18:25:44 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@ static char	*prompt_heredoc_line(void)
 	return (line);
 }
 
+static int	handle_line_null(int *fds)
+{
+	close(fds[0]);
+	close(fds[1]);
+	if (g_signal == SIGINT)
+		return (-1);
+	return (0);
+}
+
 static int	handle_heredoc_input(t_redir *r, int *fds, t_shell *shell)
 {
 	char	*line;
@@ -35,13 +44,7 @@ static int	handle_heredoc_input(t_redir *r, int *fds, t_shell *shell)
 	{
 		line = prompt_heredoc_line();
 		if (!line)
-		{
-			close(fds[0]);
-			close(fds[1]);
-			if (g_signal == SIGINT)
-				return (-1);
-			break ;
-		}
+			return (handle_line_null(fds));
 		if (is_delimiter(line, r->file))
 		{
 			free(line);

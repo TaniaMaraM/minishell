@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 19:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/10 15:23:48 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/10 18:24:29 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,28 @@ static int	setup_pipeline_execution(t_cmd *cmd_list, t_shell *shell,
 	return (0);
 }
 
+static int	wait_for_children(void)
+{
+	int	status;
+	int	last_status;
+	int	current_status;
+
+	last_status = EXIT_SUCCESS;
+	while (wait(&status) > 0)
+	{
+		current_status = get_child_exit_status(status);
+		if (current_status != 0)
+			last_status = current_status;
+	}
+	return (last_status);
+}
+
 int	execute_pipeline(t_cmd *cmd_list, t_shell *shell)
 {
 	int		pipe_fds[2];
 	int		prev_read_fd;
-	int		status;
-	int		last_status;
 	int		result;
+	int		last_status;
 
 	if (!cmd_list || !shell)
 		return (1);
@@ -60,13 +75,7 @@ int	execute_pipeline(t_cmd *cmd_list, t_shell *shell)
 	}
 	if (setup_pipeline_execution(cmd_list, shell, &prev_read_fd, pipe_fds))
 		return (1);
-	last_status = EXIT_SUCCESS;
-	while (wait(&status) > 0)
-	{
-		int current_status = get_child_exit_status(status);
-		if (current_status != 0)
-			last_status = current_status;
-	}
+	last_status = wait_for_children();
 	cleanup_pipeline_heredoc_fds(cmd_list);
 	return (last_status);
 }
