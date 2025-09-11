@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 14:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/10 14:59:28 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/11 19:10:18 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ int	shell_loop(t_shell *sh)
 		}
 		if (handle_empty_or_signal(sh, line))
 			continue ;
-		add_history(line);
+		if (sh->is_interactive)
+			add_history(line);
 		process_line(line, sh);
 		free(line);
 	}

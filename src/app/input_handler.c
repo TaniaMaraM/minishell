@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 15:45:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/10 14:06:23 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/11 20:51:26 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ char	*read_command_line(void)
 	if (isatty(STDIN_FILENO))
 	{
 		line = readline("minishell$ ");
-		if (line && *line)
-			add_history(line);
 	}
 	else
 	{
@@ -105,7 +103,10 @@ void	process_line(char *input, t_shell *sh)
 	if (validate_and_process_quotes(input, &processed_input, sh))
 		return ;
 	if (init_lexer_parser(processed_input, &lexer, &parser, sh))
+	{
+		free(processed_input);
 		return ;
+	}
 	cmd_list = parser_parse(parser);
 	if (parser->error || !cmd_list)
 	{
@@ -116,6 +117,8 @@ void	process_line(char *input, t_shell *sh)
 	{
 		sh->last_status = execute_command_list(cmd_list, sh);
 	}
+	if (cmd_list)
+		cmd_destroy_list(cmd_list);
 	parser_destroy(parser);
 	lexer_destroy(lexer);
 	free(processed_input);

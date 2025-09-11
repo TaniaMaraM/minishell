@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 09:00:00 by rwrobles          #+#    #+#             */
-/*   Updated: 2025/09/08 11:31:39 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/11 17:49:06 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static int	parse_execute(t_parser *parser)
 	else
 	{
 		status = execute_command_list(cmd_list, parser->shell);
+		cmd_destroy_list(cmd_list);
 	}
 	return (status);
 }

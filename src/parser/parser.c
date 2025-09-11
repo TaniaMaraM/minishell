@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 09:00:00 by rwrobles          #+#    #+#             */
-/*   Updated: 2025/09/10 16:31:08 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/11 20:54:24 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ void	parser_destroy(t_parser *parser)
 		return ;
 	if (parser->current_token)
 		token_destroy(parser->current_token);
-	if (parser->cmd_list)
-		cmd_destroy_list(parser->cmd_list);
 	free(parser);
 }
 
