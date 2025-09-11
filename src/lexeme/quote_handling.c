@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 22:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/08 21:27:33 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/11 17:15:06 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,13 @@
  */
 char	*process_quotes(char *str, t_shell *sh)
 {
+	char	*result;
+
 	(void)sh;
 	if (!str)
 		return (NULL);
-	return (ft_strdup(str));
+	result = ft_strdup(str);
+	return (result);
 }
 
 /**

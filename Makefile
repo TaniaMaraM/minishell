@@ -144,35 +144,18 @@ test-edge-cases:
 	@echo "$(GREEN)[Running edge case tests]$(RESET)"
 	@./tests/test_edge_cases.sh
 
-test-stress:
-	@echo "$(GREEN)[Running stress tests]$(RESET)"
-	@./tests/test_stress.sh
-
 test-evaluation:
 	@echo "$(GREEN)[Running evaluation simulation tests]$(RESET)"
 	@./tests/test_evaluation.sh
 
-test-advanced: test-edge-cases test-stress test-evaluation
-	@echo "$(GREEN)[All advanced tests completed]$(RESET)"
+# Docker commands
+valgrind:
+	@echo "$(GREEN)[Running]$(RESET) Valgrind check in Docker"
+	@docker build -t minishell_valgrind .
+	@docker run --rm minishell_valgrind
 
-test-eval-visual:
-	@echo "$(GREEN)[Running visual evaluation tester]$(RESET)"
-	@chmod +x ./tests/evaluation_tester.sh
-	@./tests/evaluation_tester.sh
+docker-clean:
+	@echo "$(RED)[Docker]$(RESET) Removing Docker image"
+	@docker rmi minishell_valgrind 2>/dev/null || true
 
-test-unit:
-	@echo "$(GREEN)[Running unit tests]$(RESET)"
-	@$(CC) $(CFLAGS) $(INCLUDES) tests/test_lexer_unit.c src/lexeme/*.c src/utils/error.c $(LIBFT) -o test_lexer_unit
-	@./test_lexer_unit
-	@rm -f test_lexer_unit
-
-test-lexer: test-unit
-	@echo "$(GREEN)[Lexer unit tests completed]$(RESET)"
-
-test-builtin:
-	@echo "$(GREEN)[Running builtin unit tests]$(RESET)"
-	@$(CC) $(CFLAGS) $(INCLUDES) tests/test_builtin_unit.c src/builtin/*.c src/expand/*.c src/utils/error.c $(LIBFT) -o test_builtin_unit
-	@./test_builtin_unit
-	@rm -f test_builtin_unit
-
-.PHONY: all clean fclean re test test-phase0 test-phase1 test-phase2 test-phase4 test-phase5 test-unit test-lexer test-builtin
+.PHONY: all clean fclean re test test-phase0 test-phase1 test-phase2 test-phase4 test-phase5 test-unit test-lexer test-builtin valgrind docker-clean

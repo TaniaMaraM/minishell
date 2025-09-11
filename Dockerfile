@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:22.04
 
 # Instalar dependências necessárias
 RUN apt-get update && apt-get install -y \
@@ -8,6 +8,8 @@ RUN apt-get update && apt-get install -y \
     libreadline-dev \
     gdb \
     bash \
+    vim \
+    nano \
     && rm -rf /var/lib/apt/lists/*
 
 # Configurar o ambiente
@@ -17,28 +19,28 @@ COPY . .
 # Compilar o projeto
 RUN make re
 
-# Script para executar o valgrind
+# Criar apenas um script de ajuda simples
 RUN echo '#!/bin/bash\n\
-echo "Running Valgrind on minishell..."\n\
-valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=/app/bash.supp ./minishell "$@"\n\
-' > /app/run_valgrind.sh && chmod +x /app/run_valgrind.sh
-
-# Criar um arquivo de supressão para readline
-RUN echo '{\n\
-    <Readline>\n\
-    Memcheck:Leak\n\
-    ...\n\
-    fun:readline\n\
-    ...\n\
-}\n\
-{\n\
-    <AddHistory>\n\
-    Memcheck:Leak\n\
-    ...\n\
-    fun:add_history\n\
-    ...\n\
-}\n\
-' > /app/bash.supp
+echo "🐳 Minishell Valgrind Environment"\n\
+echo "================================="\n\
+echo ""\n\
+echo "Comandos Valgrind úteis:"\n\
+echo "  valgrind ./minishell                                    - Básico"\n\
+echo "  valgrind --leak-check=full ./minishell                  - Completo"\n\
+echo "  valgrind --leak-check=full --log-file=log.txt ./minishell - Com log"\n\
+echo ""\n\
+echo "Exemplos de teste manual:"\n\
+echo "  echo \"echo hello\\nexit\" | valgrind --leak-check=full ./minishell"\n\
+echo "  echo \"pwd\\nls\\nexit\" | valgrind --leak-check=full --log-file=test1.log ./minishell"\n\
+echo "  echo \"export VAR=test\\necho \$VAR\\nexit\" | valgrind --leak-check=full --log-file=test2.log ./minishell"\n\
+echo ""\n\
+echo "Para testar manualmente:"\n\
+echo "  1. Execute: valgrind --leak-check=full --log-file=meu_teste.log ./minishell"\n\
+echo "  2. Digite seus comandos"\n\
+echo "  3. Digite exit"\n\
+echo "  4. Veja o log: cat meu_teste.log"\n\
+echo ""\n\
+' > /app/help.sh && chmod +x /app/help.sh
 
 # Comando padrão para iniciar o container
-ENTRYPOINT ["/bin/bash"]
+CMD ["/bin/bash"]
