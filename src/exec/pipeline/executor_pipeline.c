@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 19:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/12 19:11:43 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/12 19:32:16 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,36 +24,36 @@ static int	get_child_exit_status(int status)
 }
 
 static int	setup_pipeline_execution(t_cmd *cmd_list, t_shell *shell,
-	int *prev_read_fd, int *pipe_fds)
+	int *prev_read_fd, int *pipe_fds, pid_t *last_pid)
 {
 	t_cmd	*current;
+	pid_t	pid;
 
 	current = cmd_list;
 	*prev_read_fd = -1;
 	while (current)
 	{
-		if (setup_pipeline_process(current, pipe_fds, *prev_read_fd, shell))
+		if (setup_pipeline_process(current, pipe_fds, *prev_read_fd, shell, &pid))
 		{
 			cleanup_pipeline_heredoc_fds(cmd_list);
 			return (1);
 		}
+		*last_pid = pid;
 		execute_pipeline_parent(&current, pipe_fds, prev_read_fd);
 	}
 	return (0);
 }
 
-static int	wait_for_children(void)
+static int	wait_for_children(pid_t last_pid)
 {
 	int	status;
 	int	last_status;
-	int	current_status;
 
 	last_status = EXIT_SUCCESS;
+	if (waitpid(last_pid, &status, 0) > 0)
+		last_status = get_child_exit_status(status);
 	while (wait(&status) > 0)
-	{
-		current_status = get_child_exit_status(status);
-		last_status = current_status;
-	}
+		;
 	return (last_status);
 }
 
@@ -63,6 +63,7 @@ int	execute_pipeline(t_cmd *cmd_list, t_shell *shell)
 	int		prev_read_fd;
 	int		result;
 	int		last_status;
+	pid_t	last_pid;
 
 	if (!cmd_list || !shell)
 		return (1);
@@ -72,9 +73,9 @@ int	execute_pipeline(t_cmd *cmd_list, t_shell *shell)
 		cleanup_pipeline_heredoc_fds(cmd_list);
 		return (result);
 	}
-	if (setup_pipeline_execution(cmd_list, shell, &prev_read_fd, pipe_fds))
+	if (setup_pipeline_execution(cmd_list, shell, &prev_read_fd, pipe_fds, &last_pid))
 		return (1);
-	last_status = wait_for_children();
+	last_status = wait_for_children(last_pid);
 	cleanup_pipeline_heredoc_fds(cmd_list);
 	return (last_status);
 }
