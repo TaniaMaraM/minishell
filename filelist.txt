@@ -1,0 +1,16 @@
+total 232
+-rw-r--r--@  1 renbiawro  staff    909 11 Set 14:36 Dockerfile
+drwxr-xr-x@ 29 renbiawro  staff    928 11 Set 14:36 docs
+-rw-r--r--   1 renbiawro  staff      0 11 Set 18:09 filelist.txt
+drwxr-xr-x@  9 renbiawro  staff    288 11 Set 14:36 include
+drwxr-xr-x@  4 renbiawro  staff    128 11 Set 14:36 lib
+-rw-r--r--@  1 renbiawro  staff   4864 11 Set 14:36 Makefile
+-rw-r--r--@  1 renbiawro  staff   3188 11 Set 14:36 Makefile.txt
+-rwxr-xr-x   1 renbiawro  staff  81224 11 Set 15:02 minishell
+-rw-r--r--@  1 renbiawro  staff   6461 11 Set 14:36 minishell_testing_guide.md
+drwxr-xr-x  10 renbiawro  staff    320 11 Set 15:01 obj
+-rw-r--r--   1 renbiawro  staff      6 11 Set 18:09 output.txt
+drwxr-xr-x@ 10 renbiawro  staff    320 11 Set 14:36 src
+-rw-r--r--@  1 renbiawro  staff   3336 11 Set 14:59 test_echo.o
+-rw-r--r--   1 renbiawro  staff     18 11 Set 17:38 testfile.txt
+drwxr-xr-x@  9 renbiawro  staff    288 11 Set 14:36 tests
