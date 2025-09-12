@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 19:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/12 17:18:23 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/12 19:11:43 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ static int	wait_for_children(void)
 	while (wait(&status) > 0)
 	{
 		current_status = get_child_exit_status(status);
-		if (current_status != 0)
-			last_status = current_status;
+		last_status = current_status;
 	}
 	return (last_status);
 }
