@@ -60,7 +60,7 @@ int	execute_single_command(t_cmd *cmd, t_shell *shell)
 
 	if (!cmd || !shell || !cmd->argv || !cmd->argv[0])
 		return (1);
-	if (process_heredocs(cmd->redirs))
+	if (process_heredocs(cmd->redirs, shell))
 		return (EXIT_STATUS_SIGINT);
 	if (g_signal == SIGINT)
 	{

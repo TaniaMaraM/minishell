@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 19:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/10 18:24:29 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/12 17:18:23 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	execute_pipeline(t_cmd *cmd_list, t_shell *shell)
 
 	if (!cmd_list || !shell)
 		return (1);
-	result = process_pipeline_heredocs(cmd_list);
+ 	result = process_pipeline_heredocs(cmd_list, shell);
 	if (result)
 	{
 		cleanup_pipeline_heredoc_fds(cmd_list);

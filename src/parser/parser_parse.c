@@ -27,7 +27,8 @@ int	parser_parse_redirections(t_parser *parser, t_cmd *cmd)
 			parser->error = 1;
 			return (0);
 		}
-		if (!cmd_add_redir(cmd, type, parser->current_token->value))
+		if (!cmd_add_redir_with_quote(cmd, type, parser->current_token->value,
+				parser->current_token->quote_state))
 		{
 			parser->error = 1;
 			return (0);
