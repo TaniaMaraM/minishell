@@ -34,9 +34,9 @@ static int	handle_invalid_exit_arg(t_shell *shell)
 {
 	print_error("exit", "numeric argument required");
 	shell->should_exit = 1;
-	shell->exit_code = 255;
-	shell->last_status = 255;
-	return (255);
+	shell->exit_code = 2;
+	shell->last_status = 2;
+	return (2);
 }
 
 static int	handle_too_many_args(t_shell *shell)
