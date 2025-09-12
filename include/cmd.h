@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 08:00:00 by rwrobles          #+#    #+#             */
-/*   Updated: 2025/09/09 19:25:46 by rwrobles         ###   ########.fr       */
+/*   Updated: 2025/09/12 17:54:48 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,9 @@ int						parser_parse_pipeline(t_parser *parser);
 t_cmd					*parser_parse_command(t_parser *parser);
 int						parser_parse_redirections(t_parser *parser, t_cmd *cmd);
 int						parser_parse_arguments(t_parser *parser, t_cmd *cmd);
+int						parser_parse_single_redir(t_parser *parser, t_cmd *cmd);
+int						parser_parse_single_arg(t_parser *parser, t_cmd *cmd);
+char					*process_single_argument(t_parser *parser);
 
 /* Command functions */
 t_cmd					*cmd_create(void);

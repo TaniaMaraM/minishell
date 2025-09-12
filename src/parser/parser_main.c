@@ -45,6 +45,25 @@ int	parser_parse_pipeline(t_parser *parser)
 	return (1);
 }
 
+static int	parse_mixed_args_redirs(t_parser *parser, t_cmd *cmd)
+{
+	while (parser->current_token && (parser->current_token->type == TOKEN_WORD
+			|| parser_is_redir_token(parser->current_token->type)))
+	{
+		if (parser_is_redir_token(parser->current_token->type))
+		{
+			if (!parser_parse_single_redir(parser, cmd))
+				return (0);
+		}
+		else if (parser->current_token->type == TOKEN_WORD)
+		{
+			if (!parser_parse_single_arg(parser, cmd))
+				return (0);
+		}
+	}
+	return (1);
+}
+
 t_cmd	*parser_parse_command(t_parser *parser)
 {
 	t_cmd	*cmd;
@@ -52,12 +71,7 @@ t_cmd	*parser_parse_command(t_parser *parser)
 	cmd = cmd_create();
 	if (!cmd)
 		return (NULL);
-	if (!parser_parse_arguments(parser, cmd))
-	{
-		cmd_destroy(cmd);
-		return (NULL);
-	}
-	if (!parser_parse_redirections(parser, cmd))
+	if (!parse_mixed_args_redirs(parser, cmd))
 	{
 		cmd_destroy(cmd);
 		return (NULL);
