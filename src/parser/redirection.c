@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 09:00:00 by rwrobles          #+#    #+#             */
-/*   Updated: 2025/09/10 16:31:56 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/12 17:24:35 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_redir	*redir_create(t_redir_type type, const char *file)
 		return (NULL);
 	}
 	redir->fd = -1;
+	redir->expand = 1;
 	redir->next = NULL;
 	return (redir);
 }
@@ -54,12 +55,46 @@ void	redir_destroy_list(t_redir *redir_list)
 	}
 }
 
+static t_redir	*redir_create_with_quote(t_redir_type type, const char *file,
+			t_quote_state quote_state)
+{
+	t_redir	*redir;
+
+	redir = redir_create(type, file);
+	if (!redir)
+		return (NULL);
+	if (type == REDIR_HEREDOC)
+		redir->expand = (quote_state == QUOTE_NONE);
+	return (redir);
+}
+
 int	cmd_add_redir(t_cmd *cmd, t_redir_type type, const char *file)
 {
 	t_redir	*new_redir;
 	t_redir	*current;
 
 	new_redir = redir_create(type, file);
+	if (!new_redir)
+		return (0);
+	if (!cmd->redirs)
+	{
+		cmd->redirs = new_redir;
+		return (1);
+	}
+	current = cmd->redirs;
+	while (current->next)
+		current = current->next;
+	current->next = new_redir;
+	return (1);
+}
+
+int	cmd_add_redir_with_quote(t_cmd *cmd, t_redir_type type, const char *file,
+		t_quote_state quote_state)
+{
+	t_redir	*new_redir;
+	t_redir	*current;
+
+	new_redir = redir_create_with_quote(type, file, quote_state);
 	if (!new_redir)
 		return (0);
 	if (!cmd->redirs)

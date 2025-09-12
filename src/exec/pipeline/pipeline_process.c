@@ -27,14 +27,14 @@ int	setup_pipeline_process(t_cmd *current, int pipe_fds[2],
 	return (0);
 }
 
-int	process_pipeline_heredocs(t_cmd *cmd_list)
+int	process_pipeline_heredocs(t_cmd *cmd_list, t_shell *shell)
 {
 	t_cmd	*current;
 
 	current = cmd_list;
 	while (current)
 	{
-		if (process_heredocs(current->redirs))
+		if (process_heredocs(current->redirs, shell))
 			return (EXIT_STATUS_SIGINT);
 		if (g_signal == SIGINT)
 			return (EXIT_STATUS_SIGINT);

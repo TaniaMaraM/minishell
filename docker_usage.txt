@@ -20,6 +20,7 @@ valgrind ./minishell  # Valgrind manual
 # ./docker_valgrind.sh test
 # ./docker_valgrind.sh clean
 # ./docker container prune -f #apenas containers parados (mais seguro)
+# docker ps - ver se tem container
 
 🔧 Dentro do container, você terá:
 ./help.sh - Mostra comandos úteis
@@ -47,6 +48,8 @@ valgrind --leak-check=full --track-origins=yes ./minishell
 valgrind --leak-check=full --log-file=relatorio.log ./minishell
 
 valgrind --leak-check=full --show-leak-kinds=all --log-file=echo_test.log ./minishell
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=readline_suppress.supp ./minishell
 **MUDAR O NOME DO RELATORIO LOG
 # Com mais detalhes
 valgrind --leak-check=full --num-callers=20 ./minishell
@@ -65,13 +68,13 @@ bbcde0d4fd26
 
 
 📊 Resumo das Flags
-        Flag	                O que faz	                Quando usar
+        Flag	                  O que faz	                 Quando usar
 --leak-check=full	        Análise completa de leaks	    Sempre
---show-leak-kinds=all	    Mostra todos os tipos	        Sempre
+--show-leak-kinds=all	        Mostra todos os tipos	            Sempre
 --track-origins=yes	        Rastreia origem de valores	    Debug avançado
---show-reachable=yes	    Detalha still reachable	        Análise profunda
---num-callers=20	        Mais funções na stack	        Código complexo
---log-file=arquivo.log	    Salva em arquivo	            Análise posterior
+--show-reachable=yes	        Detalha still reachable	            Análise profunda
+--num-callers=20	        Mais funções na stack	            Código complexo
+--log-file=arquivo.log	        Salva em arquivo	                    Análise posterior
 
 
 🐳 Explicação do Dockerfile

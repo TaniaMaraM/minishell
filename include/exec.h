@@ -34,7 +34,7 @@ int		execute_builtin_with_redirections(t_cmd *cmd, t_shell *shell);
 int		execute_parent_builtin(t_cmd *cmd, t_shell *shell);
 
 /* Redirection handling */
-int		process_heredocs(t_redir *redirs);
+int		process_heredocs(t_redir *redirs, t_shell *shell);
 int		setup_redirections(t_redir *redirs);
 int		handle_input_redirection(const char *file);
 int		handle_heredoc_redirection(const char *delimiter);
@@ -72,7 +72,7 @@ int		setup_pipeline(t_cmd *cmd, int *pipe_fds, int prev_read_fd);
 int		cleanup_pipeline(int *pipe_fds, int prev_read_fd);
 int		setup_pipeline_process(t_cmd *current, int pipe_fds[2],
 			int prev_read_fd, t_shell *shell);
-int		process_pipeline_heredocs(t_cmd *cmd_list);
+int		process_pipeline_heredocs(t_cmd *cmd_list, t_shell *shell);
 
 /* Error handling */
 void	print_command_error(const char *command, const char *error);

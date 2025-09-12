@@ -72,6 +72,8 @@ void					cmd_destroy_list(t_cmd *cmd_list);
 int						cmd_add_arg(t_cmd *cmd, const char *arg);
 int						cmd_add_redir(t_cmd *cmd, t_redir_type type,
 							const char *file);
+int						cmd_add_redir_with_quote(t_cmd *cmd, t_redir_type type,
+							const char *file, t_quote_state quote_state);
 
 /* Redirection functions */
 t_redir					*redir_create(t_redir_type type, const char *file);
