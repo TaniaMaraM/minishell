@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 08:30:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/09 18:39:15 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/12 19:30:40 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int		write_full(int fd, const char *buf, size_t len);
 int		setup_pipeline(t_cmd *cmd, int *pipe_fds, int prev_read_fd);
 int		cleanup_pipeline(int *pipe_fds, int prev_read_fd);
 int		setup_pipeline_process(t_cmd *current, int pipe_fds[2],
-			int prev_read_fd, t_shell *shell);
+			int prev_read_fd, t_shell *shell, pid_t *pid_out);
 int		process_pipeline_heredocs(t_cmd *cmd_list, t_shell *shell);
 
 /* Error handling */

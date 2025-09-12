@@ -6,14 +6,14 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 20:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/10 14:25:55 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/12 19:30:40 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 int	setup_pipeline_process(t_cmd *current, int pipe_fds[2],
-	int prev_read_fd, t_shell *shell)
+	int prev_read_fd, t_shell *shell, pid_t *pid_out)
 {
 	pid_t	pid;
 
@@ -24,6 +24,7 @@ int	setup_pipeline_process(t_cmd *current, int pipe_fds[2],
 		execute_pipeline_child(current, pipe_fds, prev_read_fd, shell);
 	else if (pid < 0)
 		return (1);
+	*pid_out = pid;
 	return (0);
 }
 
