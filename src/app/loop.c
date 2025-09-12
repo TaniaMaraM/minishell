@@ -6,35 +6,11 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 14:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/11 19:10:18 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/12 19:02:05 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static int	handle_signal_interrupt(t_shell *sh, char *line)
-{
-	if (g_signal == SIGINT)
-	{
-		sh->last_status = EXIT_STATUS_SIGINT;
-		g_signal = 0;
-		if (line)
-			free(line);
-		return (1);
-	}
-	return (0);
-}
-
-/**
- * @brief Main shell loop - read input, process and execute commands
- * @param sh Shell context
- * @return Final exit status of the shell
- */
-static void	restore_stdin_for_readline(t_shell *sh)
-{
-	if (dup2(sh->stdin_backup, STDIN_FILENO) == -1)
-		perror("dup2 to original stdin");
-}
 
 static int	is_empty_or_whitespace(const char *line)
 {
@@ -50,6 +26,33 @@ static int	is_empty_or_whitespace(const char *line)
 		i++;
 	}
 	return (1);
+}
+
+static int	handle_signal_interrupt(t_shell *sh, char *line)
+{
+	if (g_signal == SIGINT)
+	{
+		sh->last_status = EXIT_STATUS_SIGINT;
+		g_signal = 0;
+		if (is_empty_or_whitespace(line))
+		{
+			if (line)
+				free(line);
+			return (1);
+		}
+	}
+	return (0);
+}
+
+/**
+ * @brief Main shell loop - read input, process and execute commands
+ * @param sh Shell context
+ * @return Final exit status of the shell
+ */
+static void	restore_stdin_for_readline(t_shell *sh)
+{
+	if (dup2(sh->stdin_backup, STDIN_FILENO) == -1)
+		perror("dup2 to original stdin");
 }
 
 static int	handle_empty_or_signal(t_shell *sh, char *line)
