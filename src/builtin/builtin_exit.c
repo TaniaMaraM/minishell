@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 18:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/10 18:28:32 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/12 19:22:10 by rwrobles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ static int	handle_invalid_exit_arg(t_shell *shell)
 {
 	print_error("exit", "numeric argument required");
 	shell->should_exit = 1;
-	shell->exit_code = 255;
-	shell->last_status = 255;
-	return (255);
+	shell->exit_code = 2;
+	shell->last_status = 2;
+	return (2);
 }
 
 static int	handle_too_many_args(t_shell *shell)
