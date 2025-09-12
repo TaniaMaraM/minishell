@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 19:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/12 19:32:16 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/12 19:41:19 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ static int	setup_pipeline_execution(t_cmd *cmd_list, t_shell *shell,
 	*prev_read_fd = -1;
 	while (current)
 	{
-		if (setup_pipeline_process(current, pipe_fds, *prev_read_fd, shell, &pid))
+		pid = setup_pipeline_process(current, pipe_fds, *prev_read_fd, shell);
+		if (pid < 0)
 		{
 			cleanup_pipeline_heredoc_fds(cmd_list);
 			return (1);
