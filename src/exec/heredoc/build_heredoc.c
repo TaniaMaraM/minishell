@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 18:30:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/10 18:25:44 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/12 17:38:09 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,35 +27,48 @@ static char	*prompt_heredoc_line(void)
 	return (line);
 }
 
-static int	handle_line_null(int *fds)
+
+static int	handle_null_line(int *fds)
 {
-	close(fds[0]);
-	close(fds[1]);
 	if (g_signal == SIGINT)
+	{
+		close(fds[0]);
+		close(fds[1]);
 		return (-1);
+	}
+	return (0);
+}
+
+static int	process_heredoc_content(char *line, t_redir *r,
+		int *fds, t_shell *shell)
+{
+	if (is_delimiter(line, r->file))
+	{
+		free(line);
+		return (1);
+	}
+	if (process_heredoc_line_with_expand(line, r, fds[1], shell) == -1)
+	{
+		close(fds[0]);
+		close(fds[1]);
+		return (-1);
+	}
 	return (0);
 }
 
 static int	handle_heredoc_input(t_redir *r, int *fds, t_shell *shell)
 {
 	char	*line;
+	int		result;
 
 	while (1)
 	{
 		line = prompt_heredoc_line();
 		if (!line)
-			return (handle_line_null(fds));
-		if (is_delimiter(line, r->file))
-		{
-			free(line);
-			break ;
-		}
-		if (process_heredoc_line_with_expand(line, r, fds[1], shell) == -1)
-		{
-			close(fds[0]);
-			close(fds[1]);
-			return (-1);
-		}
+			return (handle_null_line(fds));
+		result = process_heredoc_content(line, r, fds, shell);
+		if (result != 0)
+			return (result == 1 ? 0 : result);
 	}
 	return (0);
 }
