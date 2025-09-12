@@ -149,13 +149,18 @@ test-evaluation:
 	@./tests/test_evaluation.sh
 
 # Docker commands
-valgrind:
-	@echo "$(GREEN)[Running]$(RESET) Valgrind check in Docker"
-	@docker build -t minishell_valgrind .
-	@docker run --rm minishell_valgrind
+#valgrind:
+#	@echo "$(GREEN)[Running]$(RESET) Valgrind check in Docker"
+#	@docker build -t minishell_valgrind .
+#	@docker run --rm minishell_valgrind
 
-docker-clean:
-	@echo "$(RED)[Docker]$(RESET) Removing Docker image"
-	@docker rmi minishell_valgrind 2>/dev/null || true
+#docker-clean:
+#	@echo "$(RED)[Docker]$(RESET) Removing Docker image"
+#	@docker rmi minishell_valgrind 2>/dev/null || true
+
+valgrind: $(NAME)
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=readline_suppress.supp ./$(NAME)
+valchild: $(NAME)
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes --trace-children=yes --suppressions=readline_suppress.supp ./$(NAME)
 
 .PHONY: all clean fclean re test test-phase0 test-phase1 test-phase2 test-phase4 test-phase5 test-unit test-lexer test-builtin valgrind docker-clean
