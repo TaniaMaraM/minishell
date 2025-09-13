@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <readline/readline.h>
+#include <readline/history.h>
 
 volatile sig_atomic_t	g_signal = 0;
 
@@ -55,9 +57,7 @@ void	signal_handler(int sig)
 		g_signal = sig;
 		write(STDOUT_FILENO, "\n", 1);
 		rl_on_new_line();
-		rl_replace_line("", 0);
-		if (rl_readline_state & RL_STATE_READCMD)
-			rl_redisplay();
+		rl_redisplay();
 	}
 }
 
