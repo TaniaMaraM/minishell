@@ -6,7 +6,7 @@
 /*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 19:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/13 14:43:54 by rwrobles         ###   ########.fr       */
+/*   Updated: 2025/09/13 14:51:05 by rwrobles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static int	setup_pipeline_execution(t_cmd *cmd_list, t_shell *shell,
 {
 	t_cmd	*current;
 	pid_t	pid;
-	pid_t	last_pid;
 
 	current = cmd_list;
 	*(exec_params->prev_read_fd) = -1;
@@ -52,7 +51,7 @@ static int	setup_pipeline_execution(t_cmd *cmd_list, t_shell *shell,
 		execute_pipeline_parent(&current,
 			exec_params->pipe_fds, exec_params->prev_read_fd);
 	}
-	return (last_pid);
+	return (0);
 }
 
 static int	wait_for_children(pid_t last_pid)
