@@ -35,6 +35,7 @@ static int	setup_pipeline_execution(t_cmd *cmd_list, t_shell *shell,
 {
 	t_cmd	*current;
 	pid_t	pid;
+	pid_t	last_pid;
 
 	current = cmd_list;
 	*(exec_params->prev_read_fd) = -1;
@@ -45,13 +46,13 @@ static int	setup_pipeline_execution(t_cmd *cmd_list, t_shell *shell,
 		if (pid < 0)
 		{
 			cleanup_pipeline_heredoc_fds(cmd_list);
-			return (1);
+			return (-1);
 		}
 		*(exec_params->last_pid) = pid;
 		execute_pipeline_parent(&current,
 			exec_params->pipe_fds, exec_params->prev_read_fd);
 	}
-	return (0);
+	return (last_pid);
 }
 
 static int	wait_for_children(pid_t last_pid)
@@ -83,6 +84,7 @@ int	execute_pipeline(t_cmd *cmd_list, t_shell *shell)
 		cleanup_pipeline_heredoc_fds(cmd_list);
 		return (result);
 	}
+
 	exec_params.prev_read_fd = &prev_read_fd;
 	exec_params.pipe_fds = pipe_fds;
 	exec_params.last_pid = &last_pid;
