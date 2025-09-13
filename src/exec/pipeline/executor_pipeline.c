@@ -6,7 +6,7 @@
 /*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 19:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/13 00:45:13 by rwrobles         ###   ########.fr       */
+/*   Updated: 2025/09/13 14:43:54 by rwrobles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ int	execute_pipeline(t_cmd *cmd_list, t_shell *shell)
 		cleanup_pipeline_heredoc_fds(cmd_list);
 		return (result);
 	}
-
 	exec_params.prev_read_fd = &prev_read_fd;
 	exec_params.pipe_fds = pipe_fds;
 	exec_params.last_pid = &last_pid;
