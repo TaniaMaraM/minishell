@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 08:30:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/12 19:41:19 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/13 14:23:16 by rwrobles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int		build_heredoc_fd(t_redir *r, t_shell *shell);
 int		process_heredoc_line_with_expand(char *line, t_redir *r,
 			int fd, t_shell *shell);
 int		write_full(int fd, const char *buf, size_t len);
+int		is_delimiter(char *line, char *delimiter);
 
 /* Pipeline handling */
 int		setup_pipeline(t_cmd *cmd, int *pipe_fds, int prev_read_fd);

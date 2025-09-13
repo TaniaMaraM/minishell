@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   build_heredoc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 18:30:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/12 17:38:09 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/13 14:23:14 by rwrobles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static int	is_delimiter(char *line, char *delimiter)
-{
-	return (ft_strcmp(line, delimiter) == 0);
-}
 
 static char	*prompt_heredoc_line(void)
 {
@@ -26,7 +21,6 @@ static char	*prompt_heredoc_line(void)
 		return (NULL);
 	return (line);
 }
-
 
 static int	handle_null_line(int *fds)
 {
@@ -68,7 +62,12 @@ static int	handle_heredoc_input(t_redir *r, int *fds, t_shell *shell)
 			return (handle_null_line(fds));
 		result = process_heredoc_content(line, r, fds, shell);
 		if (result != 0)
-			return (result == 1 ? 0 : result);
+		{
+			if (result == 1)
+				return (0);
+			else
+				return (result);
+		}
 	}
 	return (0);
 }

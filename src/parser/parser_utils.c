@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 09:00:00 by rwrobles          #+#    #+#             */
-/*   Updated: 2025/09/08 11:32:28 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/13 14:31:14 by rwrobles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,27 @@ t_redir_type	parser_token_to_redir_type(t_token_type type)
 	else if (type == TOKEN_HEREDOC)
 		return (REDIR_HEREDOC);
 	return (REDIR_IN);
+}
+
+void	redir_destroy(t_redir *redir)
+{
+	if (!redir)
+		return ;
+	if (redir->file)
+		free(redir->file);
+	free(redir);
+}
+
+void	redir_destroy_list(t_redir *redir_list)
+{
+	t_redir	*current;
+	t_redir	*next;
+
+	current = redir_list;
+	while (current)
+	{
+		next = current->next;
+		redir_destroy(current);
+		current = next;
+	}
 }

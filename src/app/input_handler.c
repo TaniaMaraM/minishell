@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 15:45:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/11 20:51:26 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/13 14:27:12 by rwrobles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,9 +114,7 @@ void	process_line(char *input, t_shell *sh)
 		sh->last_status = EXIT_STATUS_SYNTAX_ERROR;
 	}
 	else
-	{
 		sh->last_status = execute_command_list(cmd_list, sh);
-	}
 	if (cmd_list)
 		cmd_destroy_list(cmd_list);
 	parser_destroy(parser);
