@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 17:20:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/09 19:41:26 by rwrobles         ###   ########.fr       */
+/*   Updated: 2025/09/14 18:53:53 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	signal_setup_interactive(void)
 
 	sa.sa_handler = signal_handler;
 	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = SA_RESTART;
+	sa.sa_flags = 0;
 	sigaction(SIGINT, &sa, NULL);
 	sa.sa_handler = SIG_IGN;
 	sigaction(SIGQUIT, &sa, NULL);
@@ -57,6 +57,7 @@ void	signal_handler(int sig)
 		g_signal = sig;
 		write(STDOUT_FILENO, "\n", 1);
 		rl_on_new_line();
+		rl_replace_line("", 0);
 		rl_redisplay();
 	}
 }
