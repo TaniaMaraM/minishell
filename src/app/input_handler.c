@@ -117,9 +117,7 @@ void	process_line(char *input, t_shell *sh)
 	{
 		sh->last_status = execute_command_list(cmd_list, sh);
 	}
-	if (cmd_list)
-		cmd_destroy_list(cmd_list);
-	parser_destroy(parser);
-	lexer_destroy(lexer);
-	free(processed_input);
+       parser_destroy(parser);
+       lexer_destroy(lexer);
+       free(processed_input);
 }

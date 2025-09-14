@@ -40,10 +40,9 @@ static int	parse_execute(t_parser *parser)
 	}
 	else
 	{
-		status = execute_command_list(cmd_list, parser->shell);
-		cmd_destroy_list(cmd_list);
-	}
-	return (status);
+               status = execute_command_list(cmd_list, parser->shell);
+       }
+       return (status);
 }
 
 int	parse_and_process(const char *input, t_shell *shell)

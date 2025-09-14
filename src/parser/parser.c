@@ -32,11 +32,13 @@ t_parser	*parser_init(t_lexer *lexer, t_shell *shell)
 
 void	parser_destroy(t_parser *parser)
 {
-	if (!parser)
-		return ;
-	if (parser->current_token)
-		token_destroy(parser->current_token);
-	free(parser);
+        if (!parser)
+                return ;
+        if (parser->current_token)
+                token_destroy(parser->current_token);
+        if (parser->cmd_list)
+                cmd_destroy_list(parser->cmd_list);
+        free(parser);
 }
 
 int	parser_advance(t_parser *parser)
