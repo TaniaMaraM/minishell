@@ -1,0 +1,571 @@
+==993717== Memcheck, a memory error detector
+==993717== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==993717== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==993717== Command: ./minishell
+==993717== Parent PID: 989797
+==993717== 
+==993718== 
+==993718== HEAP SUMMARY:
+==993718==     in use at exit: 3,833 bytes in 89 blocks
+==993718==   total heap usage: 108 allocs, 19 frees, 4,202 bytes allocated
+==993718== 
+==993718== 11 bytes in 1 blocks are still reachable in loss record 1 of 11
+==993718==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993718==    by 0x409B05: ft_strdup (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993718==    by 0x402800: process_quotes (quote_handling.c:28)
+==993718==    by 0x4017A2: validate_and_process_quotes (input_handler.c:62)
+==993718==    by 0x401660: process_line (input_handler.c:101)
+==993718==    by 0x401965: shell_loop (loop.c:90)
+==993718==    by 0x401BCD: main (main.c:27)
+==993718== 
+==993718== 11 bytes in 2 blocks are still reachable in loss record 2 of 11
+==993718==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993718==    by 0x409B05: ft_strdup (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993718==    by 0x403E9F: set_argv_with_cleanup (command.c:57)
+==993718==    by 0x403E66: cmd_add_arg (command.c:90)
+==993718==    by 0x403B7C: parser_parse_single_arg (parser_parse.c:64)
+==993718==    by 0x403934: parse_mixed_args_redirs (parser_main.c:60)
+==993718==    by 0x403839: parser_parse_command (parser_main.c:74)
+==993718==    by 0x403704: parser_parse_pipeline (parser_main.c:29)
+==993718==    by 0x4036C3: parser_parse (parser_main.c:19)
+==993718==    by 0x4016A3: process_line (input_handler.c:108)
+==993718==    by 0x401965: shell_loop (loop.c:90)
+==993718==    by 0x401BCD: main (main.c:27)
+==993718== 
+==993718== 12 bytes in 1 blocks are still reachable in loss record 3 of 11
+==993718==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993718==    by 0x409E0B: ft_substr (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993718==    by 0x4092E5: ft_extract_line (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993718==    by 0x409142: get_next_line (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993718==    by 0x4015D6: read_non_interactive (input_handler.c:25)
+==993718==    by 0x4015A4: read_command_line (input_handler.c:48)
+==993718==    by 0x4018DE: shell_loop (loop.c:78)
+==993718==    by 0x401BCD: main (main.c:27)
+==993718== 
+==993718== 24 bytes in 1 blocks are still reachable in loss record 4 of 11
+==993718==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993718==    by 0x409BA3: ft_calloc (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993718==    by 0x401C42: lexer_init (lexer.c:22)
+==993718==    by 0x401820: init_lexer_parser (input_handler.c:75)
+==993718==    by 0x401683: process_line (input_handler.c:103)
+==993718==    by 0x401965: shell_loop (loop.c:90)
+==993718==    by 0x401BCD: main (main.c:27)
+==993718== 
+==993718== 24 bytes in 1 blocks are still reachable in loss record 5 of 11
+==993718==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993718==    by 0x403DFB: cmd_add_arg (command.c:81)
+==993718==    by 0x403B7C: parser_parse_single_arg (parser_parse.c:64)
+==993718==    by 0x403934: parse_mixed_args_redirs (parser_main.c:60)
+==993718==    by 0x403839: parser_parse_command (parser_main.c:74)
+==993718==    by 0x403704: parser_parse_pipeline (parser_main.c:29)
+==993718==    by 0x4036C3: parser_parse (parser_main.c:19)
+==993718==    by 0x4016A3: process_line (input_handler.c:108)
+==993718==    by 0x401965: shell_loop (loop.c:90)
+==993718==    by 0x401BCD: main (main.c:27)
+==993718== 
+==993718== 32 bytes in 1 blocks are still reachable in loss record 6 of 11
+==993718==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993718==    by 0x409E0B: ft_substr (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993718==    by 0x409394: ft_update_keep (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993718==    by 0x409153: get_next_line (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993718==    by 0x4015D6: read_non_interactive (input_handler.c:25)
+==993718==    by 0x4015A4: read_command_line (input_handler.c:48)
+==993718==    by 0x4018DE: shell_loop (loop.c:78)
+==993718==    by 0x401BCD: main (main.c:27)
+==993718== 
+==993718== 32 bytes in 1 blocks are still reachable in loss record 7 of 11
+==993718==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993718==    by 0x403C61: cmd_create (command.c:19)
+==993718==    by 0x403810: parser_parse_command (parser_main.c:71)
+==993718==    by 0x403704: parser_parse_pipeline (parser_main.c:29)
+==993718==    by 0x4036C3: parser_parse (parser_main.c:19)
+==993718==    by 0x4016A3: process_line (input_handler.c:108)
+==993718==    by 0x401965: shell_loop (loop.c:90)
+==993718==    by 0x401BCD: main (main.c:27)
+==993718== 
+==993718== 32 bytes in 1 blocks are still reachable in loss record 8 of 11
+==993718==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993718==    by 0x409BA3: ft_calloc (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993718==    by 0x402431: create_token (lexer_utils.c:20)
+==993718==    by 0x401E0D: lexer_next_token (lexer_parser.c:74)
+==993718==    by 0x4031E3: parser_advance (parser.c:46)
+==993718==    by 0x40299B: process_single_argument (parser_argument.c:53)
+==993718==    by 0x403B54: parser_parse_single_arg (parser_parse.c:61)
+==993718==    by 0x403934: parse_mixed_args_redirs (parser_main.c:60)
+==993718==    by 0x403839: parser_parse_command (parser_main.c:74)
+==993718==    by 0x403704: parser_parse_pipeline (parser_main.c:29)
+==993718==    by 0x4036C3: parser_parse (parser_main.c:19)
+==993718==    by 0x4016A3: process_line (input_handler.c:108)
+==993718== 
+==993718== 40 bytes in 1 blocks are still reachable in loss record 9 of 11
+==993718==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993718==    by 0x4030E9: parser_init (parser.c:19)
+==993718==    by 0x401854: init_lexer_parser (input_handler.c:80)
+==993718==    by 0x401683: process_line (input_handler.c:103)
+==993718==    by 0x401965: shell_loop (loop.c:90)
+==993718==    by 0x401BCD: main (main.c:27)
+==993718== 
+==993718== 632 bytes in 1 blocks are still reachable in loss record 10 of 11
+==993718==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993718==    by 0x401465: duplicate_env (init.c:24)
+==993718==    by 0x4013A6: shell_init (init.c:57)
+==993718==    by 0x401B96: main (main.c:22)
+==993718== 
+==993718== 2,983 bytes in 78 blocks are still reachable in loss record 11 of 11
+==993718==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993718==    by 0x409B05: ft_strdup (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993718==    by 0x4014A5: duplicate_env (init.c:30)
+==993718==    by 0x4013A6: shell_init (init.c:57)
+==993718==    by 0x401B96: main (main.c:22)
+==993718== 
+==993718== LEAK SUMMARY:
+==993718==    definitely lost: 0 bytes in 0 blocks
+==993718==    indirectly lost: 0 bytes in 0 blocks
+==993718==      possibly lost: 0 bytes in 0 blocks
+==993718==    still reachable: 3,833 bytes in 89 blocks
+==993718==         suppressed: 0 bytes in 0 blocks
+==993718== 
+==993718== For lists of detected and suppressed errors, rerun with: -s
+==993718== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==993719== 
+==993719== HEAP SUMMARY:
+==993719==     in use at exit: 3,842 bytes in 88 blocks
+==993719==   total heap usage: 129 allocs, 41 frees, 8,802 bytes allocated
+==993719== 
+==993719== 4 bytes in 1 blocks are still reachable in loss record 1 of 11
+==993719==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993719==    by 0x409B05: ft_strdup (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993719==    by 0x402800: process_quotes (quote_handling.c:28)
+==993719==    by 0x4017A2: validate_and_process_quotes (input_handler.c:62)
+==993719==    by 0x401660: process_line (input_handler.c:101)
+==993719==    by 0x401965: shell_loop (loop.c:90)
+==993719==    by 0x401BCD: main (main.c:27)
+==993719== 
+==993719== 4 bytes in 1 blocks are still reachable in loss record 2 of 11
+==993719==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993719==    by 0x409B05: ft_strdup (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993719==    by 0x403E9F: set_argv_with_cleanup (command.c:57)
+==993719==    by 0x403E66: cmd_add_arg (command.c:90)
+==993719==    by 0x403B7C: parser_parse_single_arg (parser_parse.c:64)
+==993719==    by 0x403934: parse_mixed_args_redirs (parser_main.c:60)
+==993719==    by 0x403839: parser_parse_command (parser_main.c:74)
+==993719==    by 0x403704: parser_parse_pipeline (parser_main.c:29)
+==993719==    by 0x4036C3: parser_parse (parser_main.c:19)
+==993719==    by 0x4016A3: process_line (input_handler.c:108)
+==993719==    by 0x401965: shell_loop (loop.c:90)
+==993719==    by 0x401BCD: main (main.c:27)
+==993719== 
+==993719== 5 bytes in 1 blocks are still reachable in loss record 3 of 11
+==993719==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993719==    by 0x409E0B: ft_substr (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993719==    by 0x4092E5: ft_extract_line (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993719==    by 0x409142: get_next_line (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993719==    by 0x4015D6: read_non_interactive (input_handler.c:25)
+==993719==    by 0x4015A4: read_command_line (input_handler.c:48)
+==993719==    by 0x4018DE: shell_loop (loop.c:78)
+==993719==    by 0x401BCD: main (main.c:27)
+==993719== 
+==993719== 16 bytes in 1 blocks are still reachable in loss record 4 of 11
+==993719==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993719==    by 0x403DFB: cmd_add_arg (command.c:81)
+==993719==    by 0x403B7C: parser_parse_single_arg (parser_parse.c:64)
+==993719==    by 0x403934: parse_mixed_args_redirs (parser_main.c:60)
+==993719==    by 0x403839: parser_parse_command (parser_main.c:74)
+==993719==    by 0x403704: parser_parse_pipeline (parser_main.c:29)
+==993719==    by 0x4036C3: parser_parse (parser_main.c:19)
+==993719==    by 0x4016A3: process_line (input_handler.c:108)
+==993719==    by 0x401965: shell_loop (loop.c:90)
+==993719==    by 0x401BCD: main (main.c:27)
+==993719== 
+==993719== 24 bytes in 1 blocks are still reachable in loss record 5 of 11
+==993719==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993719==    by 0x409BA3: ft_calloc (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993719==    by 0x401C42: lexer_init (lexer.c:22)
+==993719==    by 0x401820: init_lexer_parser (input_handler.c:75)
+==993719==    by 0x401683: process_line (input_handler.c:103)
+==993719==    by 0x401965: shell_loop (loop.c:90)
+==993719==    by 0x401BCD: main (main.c:27)
+==993719== 
+==993719== 32 bytes in 1 blocks are still reachable in loss record 6 of 11
+==993719==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993719==    by 0x403C61: cmd_create (command.c:19)
+==993719==    by 0x403810: parser_parse_command (parser_main.c:71)
+==993719==    by 0x403704: parser_parse_pipeline (parser_main.c:29)
+==993719==    by 0x4036C3: parser_parse (parser_main.c:19)
+==993719==    by 0x4016A3: process_line (input_handler.c:108)
+==993719==    by 0x401965: shell_loop (loop.c:90)
+==993719==    by 0x401BCD: main (main.c:27)
+==993719== 
+==993719== 32 bytes in 1 blocks are still reachable in loss record 7 of 11
+==993719==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993719==    by 0x409BA3: ft_calloc (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993719==    by 0x402431: create_token (lexer_utils.c:20)
+==993719==    by 0x401E0D: lexer_next_token (lexer_parser.c:74)
+==993719==    by 0x4031E3: parser_advance (parser.c:46)
+==993719==    by 0x40299B: process_single_argument (parser_argument.c:53)
+==993719==    by 0x403B54: parser_parse_single_arg (parser_parse.c:61)
+==993719==    by 0x403934: parse_mixed_args_redirs (parser_main.c:60)
+==993719==    by 0x403839: parser_parse_command (parser_main.c:74)
+==993719==    by 0x403704: parser_parse_pipeline (parser_main.c:29)
+==993719==    by 0x4036C3: parser_parse (parser_main.c:19)
+==993719==    by 0x4016A3: process_line (input_handler.c:108)
+==993719== 
+==993719== 40 bytes in 1 blocks are still reachable in loss record 8 of 11
+==993719==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993719==    by 0x4030E9: parser_init (parser.c:19)
+==993719==    by 0x401854: init_lexer_parser (input_handler.c:80)
+==993719==    by 0x401683: process_line (input_handler.c:103)
+==993719==    by 0x401965: shell_loop (loop.c:90)
+==993719==    by 0x401BCD: main (main.c:27)
+==993719== 
+==993719== 70 bytes in 1 blocks are still reachable in loss record 9 of 11
+==993719==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993719==    by 0x409E0B: ft_substr (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993719==    by 0x409394: ft_update_keep (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993719==    by 0x409153: get_next_line (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993719==    by 0x4015D6: read_non_interactive (input_handler.c:25)
+==993719==    by 0x4015A4: read_command_line (input_handler.c:48)
+==993719==    by 0x4018DE: shell_loop (loop.c:78)
+==993719==    by 0x401BCD: main (main.c:27)
+==993719== 
+==993719== 632 bytes in 1 blocks are still reachable in loss record 10 of 11
+==993719==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993719==    by 0x401465: duplicate_env (init.c:24)
+==993719==    by 0x4013A6: shell_init (init.c:57)
+==993719==    by 0x401B96: main (main.c:22)
+==993719== 
+==993719== 2,983 bytes in 78 blocks are still reachable in loss record 11 of 11
+==993719==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993719==    by 0x409B05: ft_strdup (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993719==    by 0x4014A5: duplicate_env (init.c:30)
+==993719==    by 0x4013A6: shell_init (init.c:57)
+==993719==    by 0x401B96: main (main.c:22)
+==993719== 
+==993719== LEAK SUMMARY:
+==993719==    definitely lost: 0 bytes in 0 blocks
+==993719==    indirectly lost: 0 bytes in 0 blocks
+==993719==      possibly lost: 0 bytes in 0 blocks
+==993719==    still reachable: 3,842 bytes in 88 blocks
+==993719==         suppressed: 0 bytes in 0 blocks
+==993719== 
+==993719== For lists of detected and suppressed errors, rerun with: -s
+==993719== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==993720== 
+==993720== HEAP SUMMARY:
+==993720==     in use at exit: 3,912 bytes in 92 blocks
+==993720==   total heap usage: 168 allocs, 76 frees, 5,428 bytes allocated
+==993720== 
+==993720== 4 bytes in 1 blocks are still reachable in loss record 1 of 14
+==993720==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993720==    by 0x409B05: ft_strdup (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993720==    by 0x403E9F: set_argv_with_cleanup (command.c:57)
+==993720==    by 0x403E66: cmd_add_arg (command.c:90)
+==993720==    by 0x403B7C: parser_parse_single_arg (parser_parse.c:64)
+==993720==    by 0x403934: parse_mixed_args_redirs (parser_main.c:60)
+==993720==    by 0x403839: parser_parse_command (parser_main.c:74)
+==993720==    by 0x403704: parser_parse_pipeline (parser_main.c:29)
+==993720==    by 0x4036C3: parser_parse (parser_main.c:19)
+==993720==    by 0x4016A3: process_line (input_handler.c:108)
+==993720==    by 0x401965: shell_loop (loop.c:90)
+==993720==    by 0x401BCD: main (main.c:27)
+==993720== 
+==993720== 8 bytes in 2 blocks are still reachable in loss record 2 of 14
+==993720==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993720==    by 0x409B05: ft_strdup (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993720==    by 0x403E9F: set_argv_with_cleanup (command.c:57)
+==993720==    by 0x403E66: cmd_add_arg (command.c:90)
+==993720==    by 0x403B7C: parser_parse_single_arg (parser_parse.c:64)
+==993720==    by 0x403934: parse_mixed_args_redirs (parser_main.c:60)
+==993720==    by 0x403839: parser_parse_command (parser_main.c:74)
+==993720==    by 0x40379D: parser_parse_pipeline (parser_main.c:38)
+==993720==    by 0x4036C3: parser_parse (parser_main.c:19)
+==993720==    by 0x4016A3: process_line (input_handler.c:108)
+==993720==    by 0x401965: shell_loop (loop.c:90)
+==993720==    by 0x401BCD: main (main.c:27)
+==993720== 
+==993720== 14 bytes in 1 blocks are still reachable in loss record 3 of 14
+==993720==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993720==    by 0x409B05: ft_strdup (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993720==    by 0x402800: process_quotes (quote_handling.c:28)
+==993720==    by 0x4017A2: validate_and_process_quotes (input_handler.c:62)
+==993720==    by 0x401660: process_line (input_handler.c:101)
+==993720==    by 0x401965: shell_loop (loop.c:90)
+==993720==    by 0x401BCD: main (main.c:27)
+==993720== 
+==993720== 15 bytes in 1 blocks are still reachable in loss record 4 of 14
+==993720==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993720==    by 0x409E0B: ft_substr (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993720==    by 0x4092E5: ft_extract_line (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993720==    by 0x409142: get_next_line (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993720==    by 0x4015D6: read_non_interactive (input_handler.c:25)
+==993720==    by 0x4015A4: read_command_line (input_handler.c:48)
+==993720==    by 0x4018DE: shell_loop (loop.c:78)
+==993720==    by 0x401BCD: main (main.c:27)
+==993720== 
+==993720== 16 bytes in 1 blocks are still reachable in loss record 5 of 14
+==993720==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993720==    by 0x403DFB: cmd_add_arg (command.c:81)
+==993720==    by 0x403B7C: parser_parse_single_arg (parser_parse.c:64)
+==993720==    by 0x403934: parse_mixed_args_redirs (parser_main.c:60)
+==993720==    by 0x403839: parser_parse_command (parser_main.c:74)
+==993720==    by 0x403704: parser_parse_pipeline (parser_main.c:29)
+==993720==    by 0x4036C3: parser_parse (parser_main.c:19)
+==993720==    by 0x4016A3: process_line (input_handler.c:108)
+==993720==    by 0x401965: shell_loop (loop.c:90)
+==993720==    by 0x401BCD: main (main.c:27)
+==993720== 
+==993720== 24 bytes in 1 blocks are still reachable in loss record 6 of 14
+==993720==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993720==    by 0x409BA3: ft_calloc (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993720==    by 0x401C42: lexer_init (lexer.c:22)
+==993720==    by 0x401820: init_lexer_parser (input_handler.c:75)
+==993720==    by 0x401683: process_line (input_handler.c:103)
+==993720==    by 0x401965: shell_loop (loop.c:90)
+==993720==    by 0x401BCD: main (main.c:27)
+==993720== 
+==993720== 24 bytes in 1 blocks are still reachable in loss record 7 of 14
+==993720==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993720==    by 0x403DFB: cmd_add_arg (command.c:81)
+==993720==    by 0x403B7C: parser_parse_single_arg (parser_parse.c:64)
+==993720==    by 0x403934: parse_mixed_args_redirs (parser_main.c:60)
+==993720==    by 0x403839: parser_parse_command (parser_main.c:74)
+==993720==    by 0x40379D: parser_parse_pipeline (parser_main.c:38)
+==993720==    by 0x4036C3: parser_parse (parser_main.c:19)
+==993720==    by 0x4016A3: process_line (input_handler.c:108)
+==993720==    by 0x401965: shell_loop (loop.c:90)
+==993720==    by 0x401BCD: main (main.c:27)
+==993720== 
+==993720== 32 bytes in 1 blocks are still reachable in loss record 8 of 14
+==993720==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993720==    by 0x403C61: cmd_create (command.c:19)
+==993720==    by 0x403810: parser_parse_command (parser_main.c:71)
+==993720==    by 0x403704: parser_parse_pipeline (parser_main.c:29)
+==993720==    by 0x4036C3: parser_parse (parser_main.c:19)
+==993720==    by 0x4016A3: process_line (input_handler.c:108)
+==993720==    by 0x401965: shell_loop (loop.c:90)
+==993720==    by 0x401BCD: main (main.c:27)
+==993720== 
+==993720== 32 bytes in 1 blocks are still reachable in loss record 9 of 14
+==993720==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993720==    by 0x403C61: cmd_create (command.c:19)
+==993720==    by 0x403810: parser_parse_command (parser_main.c:71)
+==993720==    by 0x40379D: parser_parse_pipeline (parser_main.c:38)
+==993720==    by 0x4036C3: parser_parse (parser_main.c:19)
+==993720==    by 0x4016A3: process_line (input_handler.c:108)
+==993720==    by 0x401965: shell_loop (loop.c:90)
+==993720==    by 0x401BCD: main (main.c:27)
+==993720== 
+==993720== 32 bytes in 1 blocks are still reachable in loss record 10 of 14
+==993720==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993720==    by 0x409BA3: ft_calloc (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993720==    by 0x402431: create_token (lexer_utils.c:20)
+==993720==    by 0x401E0D: lexer_next_token (lexer_parser.c:74)
+==993720==    by 0x4031E3: parser_advance (parser.c:46)
+==993720==    by 0x40299B: process_single_argument (parser_argument.c:53)
+==993720==    by 0x403B54: parser_parse_single_arg (parser_parse.c:61)
+==993720==    by 0x403934: parse_mixed_args_redirs (parser_main.c:60)
+==993720==    by 0x403839: parser_parse_command (parser_main.c:74)
+==993720==    by 0x40379D: parser_parse_pipeline (parser_main.c:38)
+==993720==    by 0x4036C3: parser_parse (parser_main.c:19)
+==993720==    by 0x4016A3: process_line (input_handler.c:108)
+==993720== 
+==993720== 40 bytes in 1 blocks are still reachable in loss record 11 of 14
+==993720==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993720==    by 0x4030E9: parser_init (parser.c:19)
+==993720==    by 0x401854: init_lexer_parser (input_handler.c:80)
+==993720==    by 0x401683: process_line (input_handler.c:103)
+==993720==    by 0x401965: shell_loop (loop.c:90)
+==993720==    by 0x401BCD: main (main.c:27)
+==993720== 
+==993720== 56 bytes in 1 blocks are still reachable in loss record 12 of 14
+==993720==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993720==    by 0x409E0B: ft_substr (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993720==    by 0x409394: ft_update_keep (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993720==    by 0x409153: get_next_line (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993720==    by 0x4015D6: read_non_interactive (input_handler.c:25)
+==993720==    by 0x4015A4: read_command_line (input_handler.c:48)
+==993720==    by 0x4018DE: shell_loop (loop.c:78)
+==993720==    by 0x401BCD: main (main.c:27)
+==993720== 
+==993720== 632 bytes in 1 blocks are still reachable in loss record 13 of 14
+==993720==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993720==    by 0x401465: duplicate_env (init.c:24)
+==993720==    by 0x4013A6: shell_init (init.c:57)
+==993720==    by 0x401B96: main (main.c:22)
+==993720== 
+==993720== 2,983 bytes in 78 blocks are still reachable in loss record 14 of 14
+==993720==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993720==    by 0x409B05: ft_strdup (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993720==    by 0x4014A5: duplicate_env (init.c:30)
+==993720==    by 0x4013A6: shell_init (init.c:57)
+==993720==    by 0x401B96: main (main.c:22)
+==993720== 
+==993720== LEAK SUMMARY:
+==993720==    definitely lost: 0 bytes in 0 blocks
+==993720==    indirectly lost: 0 bytes in 0 blocks
+==993720==      possibly lost: 0 bytes in 0 blocks
+==993720==    still reachable: 3,912 bytes in 92 blocks
+==993720==         suppressed: 0 bytes in 0 blocks
+==993720== 
+==993720== For lists of detected and suppressed errors, rerun with: -s
+==993720== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==993722== 
+==993722== HEAP SUMMARY:
+==993722==     in use at exit: 3,900 bytes in 91 blocks
+==993722==   total heap usage: 207 allocs, 116 frees, 6,228 bytes allocated
+==993722== 
+==993722== 10 bytes in 1 blocks are still reachable in loss record 1 of 13
+==993722==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993722==    by 0x409B05: ft_strdup (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993722==    by 0x403456: redir_create (redirection.c:23)
+==993722==    by 0x40363D: redir_create_with_quote (redirection.c:40)
+==993722==    by 0x403594: cmd_add_redir_with_quote (redirection.c:74)
+==993722==    by 0x403AD1: process_redir_filename (parser_parse.c:37)
+==993722==    by 0x4039B1: parser_parse_single_redir (parser_parse.c:52)
+==993722==    by 0x4038FC: parse_mixed_args_redirs (parser_main.c:55)
+==993722==    by 0x403839: parser_parse_command (parser_main.c:74)
+==993722==    by 0x403704: parser_parse_pipeline (parser_main.c:29)
+==993722==    by 0x4036C3: parser_parse (parser_main.c:19)
+==993722==    by 0x4016A3: process_line (input_handler.c:108)
+==993722== 
+==993722== 11 bytes in 2 blocks are still reachable in loss record 2 of 13
+==993722==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993722==    by 0x409B05: ft_strdup (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993722==    by 0x403E9F: set_argv_with_cleanup (command.c:57)
+==993722==    by 0x403E66: cmd_add_arg (command.c:90)
+==993722==    by 0x403B7C: parser_parse_single_arg (parser_parse.c:64)
+==993722==    by 0x403934: parse_mixed_args_redirs (parser_main.c:60)
+==993722==    by 0x403839: parser_parse_command (parser_main.c:74)
+==993722==    by 0x403704: parser_parse_pipeline (parser_main.c:29)
+==993722==    by 0x4036C3: parser_parse (parser_main.c:19)
+==993722==    by 0x4016A3: process_line (input_handler.c:108)
+==993722==    by 0x401965: shell_loop (loop.c:90)
+==993722==    by 0x401BCD: main (main.c:27)
+==993722== 
+==993722== 23 bytes in 1 blocks are still reachable in loss record 3 of 13
+==993722==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993722==    by 0x409B05: ft_strdup (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993722==    by 0x402800: process_quotes (quote_handling.c:28)
+==993722==    by 0x4017A2: validate_and_process_quotes (input_handler.c:62)
+==993722==    by 0x401660: process_line (input_handler.c:101)
+==993722==    by 0x401965: shell_loop (loop.c:90)
+==993722==    by 0x401BCD: main (main.c:27)
+==993722== 
+==993722== 24 bytes in 1 blocks are still reachable in loss record 4 of 13
+==993722==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993722==    by 0x409E0B: ft_substr (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993722==    by 0x4092E5: ft_extract_line (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993722==    by 0x409142: get_next_line (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993722==    by 0x4015D6: read_non_interactive (input_handler.c:25)
+==993722==    by 0x4015A4: read_command_line (input_handler.c:48)
+==993722==    by 0x4018DE: shell_loop (loop.c:78)
+==993722==    by 0x401BCD: main (main.c:27)
+==993722== 
+==993722== 24 bytes in 1 blocks are still reachable in loss record 5 of 13
+==993722==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993722==    by 0x409BA3: ft_calloc (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993722==    by 0x401C42: lexer_init (lexer.c:22)
+==993722==    by 0x401820: init_lexer_parser (input_handler.c:75)
+==993722==    by 0x401683: process_line (input_handler.c:103)
+==993722==    by 0x401965: shell_loop (loop.c:90)
+==993722==    by 0x401BCD: main (main.c:27)
+==993722== 
+==993722== 24 bytes in 1 blocks are still reachable in loss record 6 of 13
+==993722==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993722==    by 0x403DFB: cmd_add_arg (command.c:81)
+==993722==    by 0x403B7C: parser_parse_single_arg (parser_parse.c:64)
+==993722==    by 0x403934: parse_mixed_args_redirs (parser_main.c:60)
+==993722==    by 0x403839: parser_parse_command (parser_main.c:74)
+==993722==    by 0x403704: parser_parse_pipeline (parser_main.c:29)
+==993722==    by 0x4036C3: parser_parse (parser_main.c:19)
+==993722==    by 0x4016A3: process_line (input_handler.c:108)
+==993722==    by 0x401965: shell_loop (loop.c:90)
+==993722==    by 0x401BCD: main (main.c:27)
+==993722== 
+==993722== 32 bytes in 1 blocks are still reachable in loss record 7 of 13
+==993722==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993722==    by 0x403C61: cmd_create (command.c:19)
+==993722==    by 0x403810: parser_parse_command (parser_main.c:71)
+==993722==    by 0x403704: parser_parse_pipeline (parser_main.c:29)
+==993722==    by 0x4036C3: parser_parse (parser_main.c:19)
+==993722==    by 0x4016A3: process_line (input_handler.c:108)
+==993722==    by 0x401965: shell_loop (loop.c:90)
+==993722==    by 0x401BCD: main (main.c:27)
+==993722== 
+==993722== 32 bytes in 1 blocks are still reachable in loss record 8 of 13
+==993722==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993722==    by 0x403428: redir_create (redirection.c:19)
+==993722==    by 0x40363D: redir_create_with_quote (redirection.c:40)
+==993722==    by 0x403594: cmd_add_redir_with_quote (redirection.c:74)
+==993722==    by 0x403AD1: process_redir_filename (parser_parse.c:37)
+==993722==    by 0x4039B1: parser_parse_single_redir (parser_parse.c:52)
+==993722==    by 0x4038FC: parse_mixed_args_redirs (parser_main.c:55)
+==993722==    by 0x403839: parser_parse_command (parser_main.c:74)
+==993722==    by 0x403704: parser_parse_pipeline (parser_main.c:29)
+==993722==    by 0x4036C3: parser_parse (parser_main.c:19)
+==993722==    by 0x4016A3: process_line (input_handler.c:108)
+==993722==    by 0x401965: shell_loop (loop.c:90)
+==993722== 
+==993722== 32 bytes in 1 blocks are still reachable in loss record 9 of 13
+==993722==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993722==    by 0x409BA3: ft_calloc (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993722==    by 0x402431: create_token (lexer_utils.c:20)
+==993722==    by 0x401E0D: lexer_next_token (lexer_parser.c:74)
+==993722==    by 0x4031E3: parser_advance (parser.c:46)
+==993722==    by 0x403AFA: process_redir_filename (parser_parse.c:43)
+==993722==    by 0x4039B1: parser_parse_single_redir (parser_parse.c:52)
+==993722==    by 0x4038FC: parse_mixed_args_redirs (parser_main.c:55)
+==993722==    by 0x403839: parser_parse_command (parser_main.c:74)
+==993722==    by 0x403704: parser_parse_pipeline (parser_main.c:29)
+==993722==    by 0x4036C3: parser_parse (parser_main.c:19)
+==993722==    by 0x4016A3: process_line (input_handler.c:108)
+==993722== 
+==993722== 33 bytes in 1 blocks are still reachable in loss record 10 of 13
+==993722==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993722==    by 0x409E0B: ft_substr (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993722==    by 0x409394: ft_update_keep (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993722==    by 0x409153: get_next_line (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993722==    by 0x4015D6: read_non_interactive (input_handler.c:25)
+==993722==    by 0x4015A4: read_command_line (input_handler.c:48)
+==993722==    by 0x4018DE: shell_loop (loop.c:78)
+==993722==    by 0x401BCD: main (main.c:27)
+==993722== 
+==993722== 40 bytes in 1 blocks are still reachable in loss record 11 of 13
+==993722==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993722==    by 0x4030E9: parser_init (parser.c:19)
+==993722==    by 0x401854: init_lexer_parser (input_handler.c:80)
+==993722==    by 0x401683: process_line (input_handler.c:103)
+==993722==    by 0x401965: shell_loop (loop.c:90)
+==993722==    by 0x401BCD: main (main.c:27)
+==993722== 
+==993722== 632 bytes in 1 blocks are still reachable in loss record 12 of 13
+==993722==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993722==    by 0x401465: duplicate_env (init.c:24)
+==993722==    by 0x4013A6: shell_init (init.c:57)
+==993722==    by 0x401B96: main (main.c:22)
+==993722== 
+==993722== 2,983 bytes in 78 blocks are still reachable in loss record 13 of 13
+==993722==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==993722==    by 0x409B05: ft_strdup (in /home/rwrobles/Desktop/minihell_done/minishell)
+==993722==    by 0x4014A5: duplicate_env (init.c:30)
+==993722==    by 0x4013A6: shell_init (init.c:57)
+==993722==    by 0x401B96: main (main.c:22)
+==993722== 
+==993722== LEAK SUMMARY:
+==993722==    definitely lost: 0 bytes in 0 blocks
+==993722==    indirectly lost: 0 bytes in 0 blocks
+==993722==      possibly lost: 0 bytes in 0 blocks
+==993722==    still reachable: 3,900 bytes in 91 blocks
+==993722==         suppressed: 0 bytes in 0 blocks
+==993722== 
+==993722== For lists of detected and suppressed errors, rerun with: -s
+==993722== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==993717== 
+==993717== HEAP SUMMARY:
+==993717==     in use at exit: 0 bytes in 0 blocks
+==993717==   total heap usage: 280 allocs, 280 frees, 7,660 bytes allocated
+==993717== 
+==993717== All heap blocks were freed -- no leaks are possible
+==993717== 
+==993717== For lists of detected and suppressed errors, rerun with: -s
+==993717== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
