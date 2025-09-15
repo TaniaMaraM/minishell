@@ -6,15 +6,11 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 19:40:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/08 20:59:46 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/15 13:40:29 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-char	*extract_var_name(const char *arg);
-char	*extract_var_value(const char *arg);
-int		validate_and_set_var(t_shell *shell, char *name, char *value);
 
 static int	handle_var_without_value(t_shell *shell, char *name)
 {

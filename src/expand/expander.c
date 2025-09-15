@@ -12,11 +12,6 @@
 
 #include "minishell.h"
 
-t_expander	*expander_init(const char *input, t_shell *shell,
-		t_quote_state state)
-{
-	return (expander_alloc(input, shell, state));
-}
 
 void	expander_destroy(t_expander *expander)
 {

@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 18:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/02 20:36:41 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/15 13:35:10 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	execute_builtin_in_child(t_cmd *cmd, t_shell *shell)
 {
 	if (!cmd || !cmd->argv || !cmd->argv[0] || !shell)
-		return (1);
+		return (EXIT_FAILURE);
 	if (ft_strcmp(cmd->argv[0], "echo") == 0)
 		return (builtin_echo(cmd->argv, shell));
 	if (ft_strcmp(cmd->argv[0], "cd") == 0)
