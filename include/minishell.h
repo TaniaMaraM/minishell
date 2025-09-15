@@ -60,6 +60,7 @@ typedef struct s_shell
 	int		should_exit;
 	int		exit_code;
 	int		stdin_backup;
+	t_cmd	*current_cmd_list;
 }			t_shell;
 
 /* Function prototypes */

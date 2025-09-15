@@ -6,7 +6,7 @@
 /*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 15:45:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/15 16:02:05 by rwrobles         ###   ########.fr       */
+/*   Updated: 2025/09/15 16:57:47 by rwrobles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,11 @@ void	process_line(char *input, t_shell *sh)
 		sh->last_status = EXIT_STATUS_SYNTAX_ERROR;
 	}
 	else
+	{
+		sh->current_cmd_list = cmd_list;
 		sh->last_status = execute_command_list(cmd_list, sh);
+		sh->current_cmd_list = NULL;
+	}
 	if (cmd_list)
 		cmd_destroy_list(cmd_list);
 }

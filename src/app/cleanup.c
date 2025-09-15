@@ -17,6 +17,11 @@ void	shell_cleanup(t_shell *shell)
 	if (!shell)
 		return ;
 	signal_restore_defaults();
+	if (shell->current_cmd_list)
+	{
+		cmd_destroy_list(shell->current_cmd_list);
+		shell->current_cmd_list = NULL;
+	}
 	if (shell->envp)
 	{
 		ft_strarr_free(shell->envp);

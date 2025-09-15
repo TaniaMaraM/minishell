@@ -48,6 +48,7 @@ int	shell_init(t_shell *shell, char **envp)
 	shell->prompt = "minishell$ ";
 	shell->should_exit = 0;
 	shell->exit_code = 0;
+	shell->current_cmd_list = NULL;
 	shell->stdin_backup = dup(STDIN_FILENO);
 	if (shell->stdin_backup == -1)
 	{
