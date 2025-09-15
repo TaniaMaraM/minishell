@@ -12,7 +12,6 @@
 
 #include "minishell.h"
 
-
 void	expander_destroy(t_expander *expander)
 {
 	if (!expander)
