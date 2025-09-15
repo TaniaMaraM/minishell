@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   single_command_exec.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 19:10:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/15 14:48:43 by rwrobles         ###   ########.fr       */
+/*   Updated: 2025/09/15 18:14:20 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,6 @@ static int	handle_parent_process(t_cmd *cmd, pid_t pid)
 	print_error("fork", strerror(errno));
 	return (1);
 }
-
-/* Function declarations from single_command.c */
-int	check_parent_builtin(char *cmd_name);
-int	execute_builtin_with_redirections(t_cmd *cmd, t_shell *shell);
 
 int	execute_single_command(t_cmd *cmd, t_shell *shell)
 {
