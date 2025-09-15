@@ -6,7 +6,7 @@
 /*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 13:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/15 14:48:43 by rwrobles         ###   ########.fr       */
+/*   Updated: 2025/09/15 18:45:03 by rwrobles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ int	execute_pipeline_child(t_cmd *cmd, int *pipe_fds,
 
 	setup_pipeline(cmd, pipe_fds, prev_read_fd);
 	if (setup_redirections(cmd->redirs))
+	{
+		shell_cleanup(shell);
+		exit(1);
+	}
+	if (!cmd->argv[0])
 	{
 		shell_cleanup(shell);
 		exit(1);
