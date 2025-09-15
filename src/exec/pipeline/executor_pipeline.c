@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_pipeline.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 19:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/13 14:51:05 by rwrobles         ###   ########.fr       */
+/*   Updated: 2025/09/14 21:15:47 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,33 +23,37 @@ static int	get_child_exit_status(int status)
 	return (WEXITSTATUS(status));
 }
 
-typedef struct s_pipeline_exec
+static int	process_single_pipeline_cmd(t_cmd **current, t_shell *shell,
+	int *pipe_fds, int *prev_read_fd)
 {
-	int		*prev_read_fd;
-	int		*pipe_fds;
-	pid_t	*last_pid;
-}	t_pipeline_exec;
-
-static int	setup_pipeline_execution(t_cmd *cmd_list, t_shell *shell,
-	t_pipeline_exec *exec_params)
-{
-	t_cmd	*current;
 	pid_t	pid;
 
+	pid = setup_pipeline_process(*current, pipe_fds, *prev_read_fd, shell);
+	if (pid < 0)
+		return (-1);
+	execute_pipeline_parent(current, pipe_fds, prev_read_fd);
+	return (pid);
+}
+
+static int	setup_pipeline_execution(t_cmd *cmd_list, t_shell *shell,
+	int *pipe_fds, pid_t *last_pid)
+{
+	t_cmd	*current;
+	int		prev_read_fd;
+	int		pid;
+
 	current = cmd_list;
-	*(exec_params->prev_read_fd) = -1;
+	prev_read_fd = -1;
 	while (current)
 	{
-		pid = setup_pipeline_process(current,
-				exec_params->pipe_fds, *(exec_params->prev_read_fd), shell);
+		pid = process_single_pipeline_cmd(&current, shell,
+				pipe_fds, &prev_read_fd);
 		if (pid < 0)
 		{
 			cleanup_pipeline_heredoc_fds(cmd_list);
-			return (-1);
+			return (1);
 		}
-		*(exec_params->last_pid) = pid;
-		execute_pipeline_parent(&current,
-			exec_params->pipe_fds, exec_params->prev_read_fd);
+		*last_pid = pid;
 	}
 	return (0);
 }
@@ -69,11 +73,10 @@ static int	wait_for_children(pid_t last_pid)
 
 int	execute_pipeline(t_cmd *cmd_list, t_shell *shell)
 {
-	int				pipe_fds[2];
-	int				prev_read_fd;
-	int				result;
-	pid_t			last_pid;
-	t_pipeline_exec	exec_params;
+	int		pipe_fds[2];
+	int		result;
+	int		last_status;
+	pid_t	last_pid;
 
 	if (!cmd_list || !shell)
 		return (1);
@@ -83,12 +86,9 @@ int	execute_pipeline(t_cmd *cmd_list, t_shell *shell)
 		cleanup_pipeline_heredoc_fds(cmd_list);
 		return (result);
 	}
-	exec_params.prev_read_fd = &prev_read_fd;
-	exec_params.pipe_fds = pipe_fds;
-	exec_params.last_pid = &last_pid;
-	if (setup_pipeline_execution(cmd_list, shell, &exec_params))
+	if (setup_pipeline_execution(cmd_list, shell, pipe_fds, &last_pid))
 		return (1);
-	result = wait_for_children(last_pid);
+	last_status = wait_for_children(last_pid);
 	cleanup_pipeline_heredoc_fds(cmd_list);
-	return (result);
+	return (last_status);
 }

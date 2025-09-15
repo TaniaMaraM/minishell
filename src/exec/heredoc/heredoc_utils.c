@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 13:40:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/10 18:29:11 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/14 21:16:30 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,9 @@ int	cleanup_heredoc(int *pipe_fds, int stdin_backup)
 	dup2(tmp_fd, STDIN_FILENO);
 	close(tmp_fd);
 	return (0);
+}
+
+int	is_delimiter(char *line, char *delimiter)
+{
+	return (ft_strcmp(line, delimiter) == 0);
 }

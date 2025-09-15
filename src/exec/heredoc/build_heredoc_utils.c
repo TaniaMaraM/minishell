@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_heredoc_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 18:35:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/13 14:27:48 by rwrobles         ###   ########.fr       */
+/*   Updated: 2025/09/14 21:16:47 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,4 @@ int	process_heredoc_line_with_expand(char *line, t_redir *r,
 		free(expanded);
 	free(line);
 	return (0);
-}
-
-int	is_delimiter(char *line, char *delimiter)
-{
-	return (ft_strcmp(line, delimiter) == 0);
 }

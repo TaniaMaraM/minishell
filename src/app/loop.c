@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 14:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/12 19:02:05 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/14 18:44:46 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int	shell_loop(t_shell *sh)
 
 	while (!sh->should_exit)
 	{
-		g_signal = 0;
 		restore_stdin_for_readline(sh);
 		line = read_command_line();
 		if (!line)
@@ -84,7 +83,10 @@ int	shell_loop(t_shell *sh)
 			break ;
 		}
 		if (handle_empty_or_signal(sh, line))
+		{
 			continue ;
+		}
+		g_signal = 0;
 		if (sh->is_interactive)
 			add_history(line);
 		process_line(line, sh);
