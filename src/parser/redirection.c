@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 09:00:00 by rwrobles          #+#    #+#             */
-/*   Updated: 2025/09/13 14:31:19 by rwrobles         ###   ########.fr       */
+/*   Updated: 2025/09/15 14:31:56 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_redir	*redir_create(t_redir_type type, const char *file)
+t_redir	*init_redir(t_redir_type type, const char *file)
 {
 	t_redir	*redir;
 
-	redir = malloc(sizeof(t_redir));
+	redir = ft_calloc(1, sizeof(t_redir));
 	if (!redir)
 		return (NULL);
 	redir->type = type;
@@ -37,7 +37,7 @@ static t_redir	*redir_create_with_quote(t_redir_type type, const char *file,
 {
 	t_redir	*redir;
 
-	redir = redir_create(type, file);
+	redir = init_redir(type, file);
 	if (!redir)
 		return (NULL);
 	if (type == REDIR_HEREDOC)
@@ -50,7 +50,7 @@ int	cmd_add_redir(t_cmd *cmd, t_redir_type type, const char *file)
 	t_redir	*new_redir;
 	t_redir	*current;
 
-	new_redir = redir_create(type, file);
+	new_redir = init_redir(type, file);
 	if (!new_redir)
 		return (0);
 	if (!cmd->redirs)
