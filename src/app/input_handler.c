@@ -6,7 +6,7 @@
 /*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 15:45:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/13 14:27:12 by rwrobles         ###   ########.fr       */
+/*   Updated: 2025/09/15 16:02:05 by rwrobles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ void	process_line(char *input, t_shell *sh)
 	t_lexer		*lexer;
 	t_parser	*parser;
 	t_cmd		*cmd_list;
+	int			parser_error;
 
 	if (validate_and_process_quotes(input, &processed_input, sh))
 		return ;
@@ -107,8 +108,12 @@ void	process_line(char *input, t_shell *sh)
 		free(processed_input);
 		return ;
 	}
+	free(processed_input);
 	cmd_list = parser_parse(parser);
-	if (parser->error || !cmd_list)
+	parser_error = parser->error;
+	parser_destroy(parser);
+	lexer_destroy(lexer);
+	if (parser_error || !cmd_list)
 	{
 		print_error("parser", "Syntax error");
 		sh->last_status = EXIT_STATUS_SYNTAX_ERROR;
@@ -117,7 +122,4 @@ void	process_line(char *input, t_shell *sh)
 		sh->last_status = execute_command_list(cmd_list, sh);
 	if (cmd_list)
 		cmd_destroy_list(cmd_list);
-	parser_destroy(parser);
-	lexer_destroy(lexer);
-	free(processed_input);
 }
