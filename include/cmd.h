@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 08:00:00 by rwrobles          #+#    #+#             */
-/*   Updated: 2025/09/12 17:54:48 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/15 14:31:56 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int						parser_parse_single_arg(t_parser *parser, t_cmd *cmd);
 char					*process_single_argument(t_parser *parser);
 
 /* Command functions */
-t_cmd					*cmd_create(void);
+t_cmd					*init_cmd(void);
 void					cmd_destroy(t_cmd *cmd);
 void					cmd_destroy_list(t_cmd *cmd_list);
 int						cmd_add_arg(t_cmd *cmd, const char *arg);
@@ -79,7 +79,7 @@ int						cmd_add_redir_with_quote(t_cmd *cmd, t_redir_type type,
 							const char *file, t_quote_state quote_state);
 
 /* Redirection functions */
-t_redir					*redir_create(t_redir_type type, const char *file);
+t_redir					*init_redir(t_redir_type type, const char *file);
 void					redir_destroy(t_redir *redir);
 void					redir_destroy_list(t_redir *redir_list);
 

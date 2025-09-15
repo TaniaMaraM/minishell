@@ -19,7 +19,7 @@ char	*expand_string(const char *input, t_shell *shell, t_quote_state state)
 
 	if (!input || !shell)
 		return (NULL);
-	expander = expander_init(input, shell, state);
+	expander = init_expander(input, shell, state);
 	if (!expander)
 		return (NULL);
 	if (expander_expand(expander))

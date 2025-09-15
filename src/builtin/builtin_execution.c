@@ -15,7 +15,7 @@
 int	execute_builtin_in_child(t_cmd *cmd, t_shell *shell)
 {
 	if (!cmd || !cmd->argv || !cmd->argv[0] || !shell)
-		return (1);
+		return (EXIT_FAILURE);
 	if (ft_strcmp(cmd->argv[0], "echo") == 0)
 		return (builtin_echo(cmd->argv, shell));
 	if (ft_strcmp(cmd->argv[0], "cd") == 0)
