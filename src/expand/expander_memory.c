@@ -26,14 +26,14 @@ static int	expander_alloc_result(t_expander *expander, const char *input)
 	return (0);
 }
 
-t_expander	*expander_alloc(const char *input, t_shell *shell,
+t_expander	*init_expander(const char *input, t_shell *shell,
 		t_quote_state state)
 {
 	t_expander	*expander;
 
 	if (!input || !shell)
 		return (NULL);
-	expander = malloc(sizeof(t_expander));
+	expander = ft_calloc(1, sizeof(t_expander));
 	if (!expander)
 		return (NULL);
 	expander->input = ft_strdup(input);

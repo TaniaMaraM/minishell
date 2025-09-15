@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 08:00:00 by rwrobles          #+#    #+#             */
-/*   Updated: 2025/09/09 19:26:46 by rwrobles         ###   ########.fr       */
+/*   Updated: 2025/09/15 14:35:00 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,7 @@ int						expand_command(t_cmd *cmd, t_shell *shell);
 int						expand_command_list(t_cmd *cmd_list, t_shell *shell);
 
 // Expander lifecycle
-t_expander				*expander_init(const char *input, t_shell *shell,
-							t_quote_state state);
-t_expander				*expander_alloc(const char *input, t_shell *shell,
+t_expander				*init_expander(const char *input, t_shell *shell,
 							t_quote_state state);
 void					expander_destroy(t_expander *expander);
 int						expander_expand(t_expander *expander);

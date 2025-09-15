@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 09:00:00 by rwrobles          #+#    #+#             */
-/*   Updated: 2025/09/11 20:46:35 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/15 14:31:56 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_cmd	*parser_parse_command(t_parser *parser)
 {
 	t_cmd	*cmd;
 
-	cmd = cmd_create();
+	cmd = init_cmd();
 	if (!cmd)
 		return (NULL);
 	if (!parse_mixed_args_redirs(parser, cmd))

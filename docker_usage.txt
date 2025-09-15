@@ -22,6 +22,24 @@ valgrind ./minishell  # Valgrind manual
 # ./docker container prune -f #apenas containers parados (mais seguro)
 # docker ps - ver se tem container
 
+## Build da imagem
+docker build -t minishell_env .
+## Rodar com volume (pra não precisar rebuildar sempre que mudar o código)
+docker run -it --rm -v $(pwd):/app minishell_env
+
+#Ver containers rodando
+docker ps
+#Parar container
+docker stop <container_id ou nome>
+#Deletar todos os containers parados de uma vez
+docker container prune
+# Listar imagens
+docker images
+# Remover imagem
+docker rmi <image_id>
+# Limpar todas imagens não usadas
+docker image prune -a
+
 🔧 Dentro do container, você terá:
 ./help.sh - Mostra comandos úteis
 ./quick_test.sh - Teste rápido com Valgrind

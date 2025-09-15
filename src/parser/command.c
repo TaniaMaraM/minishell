@@ -6,17 +6,17 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 09:00:00 by rwrobles          #+#    #+#             */
-/*   Updated: 2025/09/10 18:30:09 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/15 14:31:56 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_cmd	*cmd_create(void)
+t_cmd	*init_cmd(void)
 {
 	t_cmd	*cmd;
 
-	cmd = malloc(sizeof(t_cmd));
+	cmd = ft_calloc(1, sizeof(t_cmd));
 	if (!cmd)
 		return (NULL);
 	cmd->argv = NULL;
