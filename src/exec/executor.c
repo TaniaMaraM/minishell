@@ -6,7 +6,7 @@
 /*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 09:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/09 19:34:10 by rwrobles         ###   ########.fr       */
+/*   Updated: 2025/09/15 14:48:43 by rwrobles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,17 @@ int	execute_command_list(t_cmd *cmd_list, t_shell *shell)
 
 void	execute_child_command(t_cmd *cmd, t_shell *shell)
 {
+	int	exit_code;
+
 	if (setup_redirections(cmd->redirs))
+	{
+		shell_cleanup(shell);
 		exit(1);
+	}
 	if (is_builtin(cmd->argv[0]))
-		exit(execute_builtin_in_child(cmd, shell));
+		exit_code = execute_builtin_in_child(cmd, shell);
 	else
-		exit(execute_external_in_child(cmd, shell));
-	exit(1);
+		exit_code = execute_external_in_child(cmd, shell);
+	shell_cleanup(shell);
+	exit(exit_code);
 }

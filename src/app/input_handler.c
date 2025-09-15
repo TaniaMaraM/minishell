@@ -6,7 +6,7 @@
 /*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 15:45:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/13 14:27:12 by rwrobles         ###   ########.fr       */
+/*   Updated: 2025/09/15 14:59:13 by rwrobles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ void	process_line(char *input, t_shell *sh)
 		free(processed_input);
 		return ;
 	}
+	free(processed_input);
 	cmd_list = parser_parse(parser);
 	if (parser->error || !cmd_list)
 	{
@@ -119,5 +120,4 @@ void	process_line(char *input, t_shell *sh)
 		cmd_destroy_list(cmd_list);
 	parser_destroy(parser);
 	lexer_destroy(lexer);
-	free(processed_input);
 }

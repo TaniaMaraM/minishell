@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   single_command_exec.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 19:10:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/10 14:25:55 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/15 14:48:43 by rwrobles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,20 @@
 
 static int	handle_child_process(t_cmd *cmd, t_shell *shell)
 {
+	int	exit_code;
+
 	signal_setup_non_interactive();
 	if (setup_redirections(cmd->redirs))
+	{
+		shell_cleanup(shell);
 		exit(1);
+	}
 	if (is_builtin(cmd->argv[0]))
-		exit(execute_builtin_in_child(cmd, shell));
+		exit_code = execute_builtin_in_child(cmd, shell);
 	else
-		exit(execute_external_in_child(cmd, shell));
+		exit_code = execute_external_in_child(cmd, shell);
+	shell_cleanup(shell);
+	exit(exit_code);
 }
 
 static int	get_child_exit_status(int status)
