@@ -6,18 +6,12 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 22:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/11 17:15:06 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/16 21:05:37 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/**
- * @brief Process quotes in a string, handling variable expansion correctly
- * @param str Input string with quotes
- * @param sh Shell context for variable expansion
- * @return Processed string with quotes removed and variables expanded
- */
 char	*process_quotes(char *str, t_shell *sh)
 {
 	char	*result;
@@ -29,11 +23,6 @@ char	*process_quotes(char *str, t_shell *sh)
 	return (result);
 }
 
-/**
- * @brief Check if string has unclosed quotes
- * @param str Input string to check
- * @return 1 if unclosed quotes found, 0 otherwise
- */
 int	has_unclosed_quotes(char *str)
 {
 	int	i;

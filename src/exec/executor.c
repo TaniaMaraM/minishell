@@ -3,15 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 09:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/15 14:48:43 by rwrobles         ###   ########.fr       */
+/*   Updated: 2025/09/16 20:56:37 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief Executes a command list, choosing between single command or pipeline
+ * @param cmd_list Linked list of commands to execute
+ * @param shell Shell context with environment and state
+ * @return Exit status of the executed commands
+ */
 int	execute_command_list(t_cmd *cmd_list, t_shell *shell)
 {
 	t_cmd	*current;
@@ -35,6 +41,11 @@ int	execute_command_list(t_cmd *cmd_list, t_shell *shell)
 	return (status);
 }
 
+/**
+ * @brief Executes a command in a child process with redirections
+ * @param cmd Command structure with argv and redirections
+ * @param shell Shell context for builtin execution and cleanup
+ */
 void	execute_child_command(t_cmd *cmd, t_shell *shell)
 {
 	int	exit_code;

@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 14:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/14 18:44:46 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/16 20:58:07 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,6 @@ static int	handle_signal_interrupt(t_shell *sh, char *line)
 	return (0);
 }
 
-/**
- * @brief Main shell loop - read input, process and execute commands
- * @param sh Shell context
- * @return Final exit status of the shell
- */
 static void	restore_stdin_for_readline(t_shell *sh)
 {
 	if (dup2(sh->stdin_backup, STDIN_FILENO) == -1)
@@ -67,6 +62,11 @@ static int	handle_empty_or_signal(t_shell *sh, char *line)
 	return (0);
 }
 
+/**
+ * @brief Main shell loop - reads input, processes and executes commands
+ * @param sh Shell context with state and environment
+ * @return Final exit status of the shell
+ */
 int	shell_loop(t_shell *sh)
 {
 	char	*line;

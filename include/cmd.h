@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 08:00:00 by rwrobles          #+#    #+#             */
-/*   Updated: 2025/09/15 14:31:56 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/16 21:18:38 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,14 @@ int						parser_advance(t_parser *parser);
 int						parser_expect(t_parser *parser, t_token_type expected);
 int						parser_is_redir_token(t_token_type type);
 t_redir_type			parser_token_to_redir_type(t_token_type type);
+
+/* Parser argument helpers */
+int						check_token_spacing(t_parser *parser,
+							size_t last_token_end);
+char					*get_token_value(t_parser *parser);
+char					*process_token_join(t_parser *parser, char *result);
+int						process_additional_tokens(t_parser *parser,
+							char **result, size_t *last_token_end);
 
 /* Integration function */
 int						parse_and_process(const char *input, t_shell *shell);

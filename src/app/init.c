@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 10:15:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/16 15:21:25 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/16 20:56:59 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,12 @@ static int	setup_shell_environment(t_shell *shell, char **envp)
 	return (0);
 }
 
+/**
+ * @brief Initialises the minishell structure and sets up environment
+ * @param shell Pointer to shell structure to initialise
+ * @param envp Array of environment variables to copy
+ * @return 0 on success, 1 on failure
+ */
 int	shell_init(t_shell *shell, char **envp)
 {
 	if (!shell || !envp)

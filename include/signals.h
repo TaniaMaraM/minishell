@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 08:00:00 by rwrobles          #+#    #+#             */
-/*   Updated: 2025/09/09 13:32:08 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/16 20:45:12 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "../lib/get_next_line/get_next_line.h"
 # include "../lib/libft/libft.h"
 
-/* Global signal variable - subject requirement */
+/* Global signal variable */
 extern volatile sig_atomic_t	g_signal;
 
 /* Signal handling functions */

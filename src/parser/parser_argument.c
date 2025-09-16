@@ -6,17 +6,11 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 21:40:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/08 21:32:52 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/16 21:12:38 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int		check_token_spacing(t_parser *parser, size_t last_token_end);
-char	*get_token_value(t_parser *parser);
-char	*process_token_join(t_parser *parser, char *result);
-int		process_additional_tokens(t_parser *parser, char **result,
-			size_t *last_token_end);
 
 static char	*init_argument_result(t_parser *parser)
 {
