@@ -3,19 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   input_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 15:45:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/15 16:57:47 by rwrobles         ###   ########.fr       */
+/*   Updated: 2025/09/16 11:56:24 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/**
- * @brief Read input from stdin without showing prompt (non-interactive)
- * @return Dynamically allocated string or NULL on EOF
- */
 static char	*read_non_interactive(void)
 {
 	char	*line;

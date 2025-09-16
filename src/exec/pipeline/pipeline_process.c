@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 20:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/14 21:12:29 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/15 21:54:22 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,26 @@ pid_t	setup_pipeline_process(t_cmd *current, int pipe_fds[2],
 {
 	pid_t	pid;
 
-	if (current->next && pipe(pipe_fds) == -1)
-		return (-1);
+	if (current->next)
+	{
+		if (pipe(pipe_fds) == -1)
+			return (-1);
+	}
+	else
+	{
+		pipe_fds[0] = -1;
+		pipe_fds[1] = -1;
+	}
 	pid = create_pipeline_process(current, pipe_fds, prev_read_fd, shell);
 	if (pid < 0)
+	{
+		if (current->next)
+		{
+			close(pipe_fds[0]);
+			close(pipe_fds[1]);
+		}
 		return (-1);
+	}
 	return (pid);
 }
 

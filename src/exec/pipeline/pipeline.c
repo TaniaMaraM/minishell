@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 14:15:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/03 16:20:00 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/15 22:09:47 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	setup_pipeline(t_cmd *cmd, int *pipe_fds, int prev_read_fd)
 			return (1);
 		close(pipe_fds[1]);
 	}
+	if (pipe_fds[0] != -1)
+		close(pipe_fds[0]);
 	return (0);
 }
 
