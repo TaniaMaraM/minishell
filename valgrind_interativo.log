@@ -1,5 +1,0 @@
-==1026873== Memcheck, a memory error detector
-==1026873== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==1026873== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==1026873== Command: ./minishell
-==1026873== 

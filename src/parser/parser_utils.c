@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rwrobles <rwrobles@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 09:00:00 by rwrobles          #+#    #+#             */
-/*   Updated: 2025/09/13 14:31:14 by rwrobles         ###   ########.fr       */
+/*   Updated: 2025/09/16 14:15:40 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,23 @@ void	redir_destroy_list(t_redir *redir_list)
 		redir_destroy(current);
 		current = next;
 	}
+}
+
+int	init_lexer_parser(char *processed, t_lexer **lexer,
+		t_parser **parser, t_shell *sh)
+{
+	*lexer = lexer_init(processed);
+	if (!*lexer)
+	{
+		free(processed);
+		return (1);
+	}
+	*parser = parser_init(*lexer, sh);
+	if (!*parser)
+	{
+		lexer_destroy(*lexer);
+		free(processed);
+		return (1);
+	}
+	return (0);
 }

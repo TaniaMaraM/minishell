@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 10:15:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/10 14:06:23 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/16 15:21:25 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,18 @@ static char	**duplicate_env(char **envp)
 	return (new_envp);
 }
 
+static int	setup_shell_environment(t_shell *shell, char **envp)
+{
+	shell->envp = duplicate_env(envp);
+	if (!shell->envp)
+	{
+		print_error("initialization", "Failed to copy environment");
+		close(shell->stdin_backup);
+		return (1);
+	}
+	return (0);
+}
+
 int	shell_init(t_shell *shell, char **envp)
 {
 	if (!shell || !envp)
@@ -55,13 +67,8 @@ int	shell_init(t_shell *shell, char **envp)
 		perror("dup stdin_backup");
 		return (1);
 	}
-	shell->envp = duplicate_env(envp);
-	if (!shell->envp)
-	{
-		print_error("initialization", "Failed to copy environment");
-		close(shell->stdin_backup);
+	if (setup_shell_environment(shell, envp))
 		return (1);
-	}
 	if (shell->is_interactive)
 		signal_setup_interactive();
 	else

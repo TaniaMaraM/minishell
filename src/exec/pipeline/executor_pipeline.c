@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 19:00:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/15 22:05:55 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/16 15:36:56 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ static int	wait_for_children(pid_t last_pid)
 	int	status;
 	int	last_status;
 
+	status = 0;
 	last_status = EXIT_SUCCESS;
 	if (waitpid(last_pid, &status, 0) > 0)
 		last_status = get_child_exit_status(status);

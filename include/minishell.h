@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 08:00:00 by rwrobles          #+#    #+#             */
-/*   Updated: 2025/09/10 14:25:55 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/16 14:15:40 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,9 @@ void		print_error(const char *context, const char *message);
 /* Quote processing functions */
 char		*process_quotes(char *str, t_shell *sh);
 int			has_unclosed_quotes(char *str);
+
+/* Parser initialization functions */
+int			init_lexer_parser(char *processed, t_lexer **lexer,
+				t_parser **parser, t_shell *sh);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tmarcos <tmarcos@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 19:10:00 by tmarcos           #+#    #+#             */
-/*   Updated: 2025/09/15 18:14:20 by tmarcos          ###   ########.fr       */
+/*   Updated: 2025/09/16 15:37:38 by tmarcos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static int	handle_parent_process(t_cmd *cmd, pid_t pid)
 {
 	int	status;
 
+	status = 0;
 	if (pid > 0)
 	{
 		waitpid(pid, &status, 0);
@@ -68,6 +69,7 @@ int	execute_single_command(t_cmd *cmd, t_shell *shell)
 	if (g_signal == SIGINT)
 	{
 		cleanup_heredoc_fds(cmd);
+		g_signal = 0;
 		return (EXIT_STATUS_SIGINT);
 	}
 	if (check_parent_builtin(cmd->argv[0]))
