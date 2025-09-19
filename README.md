@@ -1,4 +1,4 @@
-# 🐚 Minishell
+# 💻 Minishell
 
 <div align="center">
   <img src="https://img.shields.io/badge/language-C-blue.svg" alt="Language">
@@ -194,7 +194,8 @@ cat minishell_testing_guide.md
 
 ```bash
 # Run with Valgrind to check for memory leaks
-./test_valgrind.sh
+make valgrind
+make valchild (to check FDs)
 ```
 
 > **Note**: The subject explicitly allows memory leaks from the readline library, so these are ignored in the Valgrind output.
@@ -203,8 +204,7 @@ cat minishell_testing_guide.md
 
 ```bash
 # Run the automated test suite
-cd tests
-./test_evaluation.sh
+./tests/test_evaluation.sh
 ```
 
 ## 📁 Project Structure

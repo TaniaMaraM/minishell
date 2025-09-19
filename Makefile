@@ -177,10 +177,30 @@ test-evaluation:
 	@echo "$(GREEN)[Running evaluation simulation tests]$(RESET)"
 	@./test/test_evaluation.sh
 
+test-phase0:
+	@echo "$(GREEN)[Running Phase 0 tests]$(RESET)"
+	@./tests/test_phase0.sh
+
+test-phase1:
+	@echo "$(GREEN)[Running Phase 1 tests]$(RESET)"
+	@./tests/test_phase1.sh
+
+test-phase2:
+	@echo "$(GREEN)[Running Phase 2 tests]$(RESET)"
+	@./tests/test_phase2.sh
+
+test-phase4:
+	@echo "$(GREEN)[Running Phase 4 tests]$(RESET)"
+	@./tests/test_phase4.sh
+
+test-phase5:
+	@echo "$(GREEN)[Running Phase 5 tests]$(RESET)"
+	@./tests/test_phase5.sh
+
 # Valgrind rules
 valgrind: $(NAME)
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=readline_suppress.supp ./$(NAME)
 valchild: $(NAME)
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes --trace-children=yes --suppressions=readline_suppress.supp ./$(NAME)
 
-.PHONY: all clean fclean re test test-edge-cases test-evaluation valgrind
+.PHONY: all clean fclean re test test-phase0 test-phase1 test-phase2 test-phase4 test-phase5 test-edge-cases test-evaluation valgrind
