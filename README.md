@@ -209,43 +209,44 @@ make valchild (to check FDs)
 
 ## 📁 Project Structure
 
-```
+<pre>
 minishell/
-├── include/                 # Header files
-│   ├── minishell.h          # Main header with core structures
-│   ├── tokens.h             # Token definitions and lexer API
-│   ├── cmd.h                # Command structures
-│   ├── expand.h             # Expansion functionality
-│   ├── exec.h               # Executor definitions
-│   ├── builtin.h            # Built-in command declarations
-│   └── signals.h            # Signal handling
-├── lib/                     # Libraries
-│   ├── libft/               # Custom C library
-│   └── get_next_line/       # Line reading utility
-├── src/                     # Source code
-│   ├── app/                 # Core application
-│   │   ├── main.c           # Entry point
-│   │   ├── loop.c           # Main execution loop
-│   │   ├── init.c           # Initialization
-│   │   ├── input_handler.c  # Input processing
-│   │   └── cleanup.c        # Resource management
-│   ├── lexeme/              # Lexical analysis
-│   ├── parser/              # Command parsing
-│   ├── expand/              # Variable expansion
-│   ├── exec/                # Command execution
-│   │   ├── command/         # Command handling
-│   │   ├── pipeline/        # Pipeline management
-│   │   └── heredoc/         # Heredoc implementation
-│   ├── builtin/             # Built-in commands
-│   ├── signals/             # Signal handling
-│   └── utils/               # Utility functions
-└── tests/                   # Test scripts
-```
+├── <a href="include">include</a>                  # Header files
+│   ├── <a href="include/minishell.h">minishell.h</a>          # Main header
+│   ├── <a href="include/tokens.h">tokens.h</a>             # Token - lexer
+│   ├── <a href="include/cmd.h">cmd.h</a>                # Command structures
+│   ├── <a href="include/expand.h">expand.h</a>             # Expansion functionality
+│   ├── <a href="include/exec.h">exec.h</a>               # Executor definitions
+│   ├── <a href="include/builtin.h">builtin.h</a>            # Built-in command declarations
+│   └── <a href="include/signals.h">signals.h</a>            # Signal handling
+├── <a href="lib">lib</a>                         # Libraries
+│   ├── <a href="lib/libft">libft</a>               # Custom C library
+│   └── <a href="lib/get_next_line">get_next_line</a>       # Line reading utility
+├── <a href="src">src</a>                         # Source code
+│   ├── <a href="src/app">app</a>                  # Core application
+│   │   ├── <a href="src/app/main.c">main.c</a>           # Entry point
+│   │   ├── <a href="src/app/loop.c">loop.c</a>           # Main execution loop
+│   │   ├── <a href="src/app/init.c">init.c</a>           # Initialization
+│   │   ├── <a href="src/app/input_handler.c">input_handler.c</a>  # Input processing
+│   │   └── <a href="src/app/cleanup.c">cleanup.c</a>        # Resource management
+│   ├── <a href="src/lexeme">lexeme</a>              # Lexical analysis
+│   ├── <a href="src/parser">parser</a>              # Command parsing
+│   ├── <a href="src/expand">expand</a>              # Variable expansion
+│   ├── <a href="src/exec">exec</a>                  # Command execution
+│   │   ├── <a href="src/exec/command">command</a>         # Command handling
+│   │   ├── <a href="src/exec/pipeline">pipeline</a>        # Pipeline management
+│   │   └── <a href="src/exec/heredoc">heredoc</a>         # Heredoc implementation
+│   ├── <a href="src/builtin">builtin</a>             # Built-in commands
+│   ├── <a href="src/signals">signals</a>             # Signal handling
+│   └── <a href="src/utils">utils</a>               # Utility functions
+├── <a href="tests">tests</a>                       # Test scripts
+└── <a href="Makefile">Makefile</a>
+</pre>
 
 ## 👥 Contributors
 
-- [Your Name] - [@TaniaMaraM](https://github.com/TaniaMaraM)
-- [Your Partner's Name] - [@RenWro](https://github.com/RenWro)
+- [@TaniaMaraM](https://github.com/TaniaMaraM)
+- [@RenWro](https://github.com/RenWro)
 
 ## 📄 License
 
